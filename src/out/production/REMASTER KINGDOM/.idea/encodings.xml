@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/Chain/Etc/MJAdenaPickupChain.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/Chain/Etc/MJHealingPotionDrinkChain.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/Command/MJCommandArgs.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/Command/MJCommandTree.java" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/DateSchedulerModel/Acceptor/AcceptorToNpcListenerAdapter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/MJClassesType/MJEClassesStatModel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/MJClassesType/MJEClassesType.java" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/MJFiles.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/MJJsonUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/MJPath.java" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/MJProto/TeamInfo/SC_INFINITY_BATTLE_BOARD_INFO_NOTI.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/MJProto/TeamInfo/SC_INFINITY_BATTLE_ENTER_MAP_NOTI.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/MJProto/TeamInfo/SC_INFINITY_BATTLE_LEAVE_MAP_NOTI.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/MJReadWriteLock.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/MJString.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/MJValidate.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/collection/MapEventListener.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/collection/ObservableMap.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/matcher/Matcher.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJTemplate/matcher/Matchers.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Codec/MJHttpResponseFactory.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Dispatcher/Template/Cash/API/MJCashChargeInsertDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Dispatcher/Template/Cash/API/MJCashInsertDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Dispatcher/Template/Cash/API/MJCashMyChargeListResponse.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Dispatcher/Template/Cash/POJO/AppCashInfo.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Dispatcher/Template/Character/MJUser.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Dispatcher/Template/Coupon/API/MJCouponChargeInsertDatabase.java" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Dispatcher/Template/GameLog/MJGameLogResponse.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Dispatcher/Template/Item/API/MJCommunityResponse.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Dispatcher/Template/Item/API/MJStatisticResponse.java" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Dispatcher/Template/Item/API/MJTradeSearchResponse.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Dispatcher/Template/Item/POJO/MJPowerBookItem.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Dispatcher/cache/MJCacheDoc.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Dispatcher/cache/monitor/MJMonitorCacheServer.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/l1j/server/MJWebServer/Dispatcher/cache/monitor/MJMonitorFileCacheModel.java" charset="UTF-8" />
+  </component>
+</project>

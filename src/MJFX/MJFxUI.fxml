@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pnl_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="961.0" prefWidth="1383.0" style="-fx-background-color: #303033; -fx-border-color: #101013;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MJFX.MJFxController">
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+   <effect>
+      <Blend />
+   </effect>
+   <children>
+      <ToolBar fx:id="tool_menu" nodeOrientation="RIGHT_TO_LEFT" onMouseDragged="#on_tool_mouse_dragged" onMousePressed="#on_tool_mouse_pressed" prefHeight="33.0" prefWidth="1383.0" style="-fx-background-color: linear-gradient(to bottom, #202023, #454548);">
+        <items>
+          <Button fx:id="btn_close" mnemonicParsing="false" onMouseClicked="#on_close_button_clicked" onMouseEntered="#on_button_enter" onMouseExited="#on_button_leave" style="-fx-background-color: transparent;" text="關閉" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btn_min" mnemonicParsing="false" onMouseClicked="#on_min_button_clicked" onMouseEntered="#on_button_enter" onMouseExited="#on_button_leave" style="-fx-background-color: transparent;" text="最小化" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+			<Pane fx:id="pnl_tool_padding" prefHeight="24.0" prefWidth="10.0" />
+        </items>
+      </ToolBar>
+      <ImageView fx:id="view_ico" fitHeight="16.0" fitWidth="16.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <!--<Image url="@../../data/img/allBuff.png" />-->
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+	  <Label fx:id="lbl_title_message" layoutX="32.0" layoutY="6.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="24.0" prefWidth="624.0" text="伺服器" textFill="WHITE" />
+      <MenuBar id="main_menu_bar" fx:id="menu" layoutY="35.0" prefHeight="25.0" prefWidth="1383.0">
+        <menus>
+          <Menu id="main_menu_file" fx:id="mitem_file" mnemonicParsing="false" text="文件">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#on_exit_button_clicked" text="伺服器關閉" />
+            </items>
+          </Menu>
+            <Menu fx:id="mitem_log_window" mnemonicParsing="false" text="視窗">
+              <items>
+                  <MenuItem fx:id="mitem_log_restore_position" mnemonicParsing="false" text="視窗重新定位" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <CheckMenuItem fx:id="mitem_log_chat" mnemonicParsing="false" text="聊天記錄" />
+                  <CheckMenuItem fx:id="mitem_log_letter" mnemonicParsing="false" text="信箱" />
+                  <CheckMenuItem fx:id="mitem_log_cpu" mnemonicParsing="false" text="CPU使用率" />
+                  <CheckMenuItem fx:id="mitem_log_memory" mnemonicParsing="false" text="記憶體使用率" />
+                  <CheckMenuItem fx:id="mitem_log_thread" mnemonicParsing="false" text="執行緒數" />
+                  <CheckMenuItem fx:id="mitem_log_object" mnemonicParsing="false" text="物件狀態" />
+                  <CheckMenuItem fx:id="mitem_log_account_create" mnemonicParsing="false" text="帳號建立日誌" />
+                  <CheckMenuItem fx:id="mitem_log_login" mnemonicParsing="false" text="登入" />
+                  <CheckMenuItem fx:id="mitem_log_gm_commands" mnemonicParsing="false" text="GM命令" />
+                  <CheckMenuItem fx:id="mitem_log_trade" mnemonicParsing="false" text="交易" />
+                  <CheckMenuItem fx:id="mitem_log_warehouse" mnemonicParsing="false" text="倉庫" />
+                  <CheckMenuItem fx:id="mitem_log_boss_timer" mnemonicParsing="false" text="Boss 地下城計時器" />
+                  <CheckMenuItem fx:id="mitem_log_enchant" mnemonicParsing="false" text="[附魔]強化監視器" />
+                  <CheckMenuItem fx:id="mitem_log_item" mnemonicParsing="false" text="物品" />
+                  <CheckMenuItem fx:id="mitem_log_minigame" mnemonicParsing="false" text="迷你遊戲顯示器" />
+              </items>
+            </Menu>
+            <Menu fx:id="mitem_utility" mnemonicParsing="false" text="公用事業">
+              <items>
+                <MenuItem fx:id="mitem_utility_command" mnemonicParsing="false" text="命令" />
+                  <MenuItem fx:id="mitem_utility_dump" mnemonicParsing="false" text="系統轉儲" />
+                  <MenuItem fx:id="mitem_utility_garbage" mnemonicParsing="false" text="垃圾執行" />
+                  <MenuItem fx:id="mitem_utility_letter" mnemonicParsing="false" text="重新整理信箱" />
+              </items>
+            </Menu>
+        </menus>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </MenuBar>
+      <Accordion layoutX="490.0" layoutY="224.0" />
+      <VBox fx:id="letter_viewer_container" layoutX="327.0" layoutY="60.0" prefHeight="340.0" prefWidth="504">
+         <children>
+            <TableView fx:id="tv_letter" prefHeight="341.0" prefWidth="477.0">
+            </TableView>
+         </children>
+      </VBox>
+      <VBox fx:id="chat_log_container" layoutY="60.0" prefHeight="340.0" prefWidth="480.0">
+         <children>
+            <TabPane fx:id="chat_log_tab_container" prefHeight="308.0" prefWidth="480.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab fx:id="tab_log_world" text="整體">
+                     <content>
+                        <AnchorPane fx:id="pnl_log_world_chat" minHeight="0.0" minWidth="0.0" prefHeight="311.0" prefWidth="480.0">
+                           <children>
+                              <TextArea fx:id="txt_log_world_chat" editable="false" prefHeight="278.0" prefWidth="473.0" style="-fx-control-inner-background: #202023; -fx-text-fill: white; -fx-highlight-text-fill: white;" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="一般">
+                     <content>
+                        <AnchorPane fx:id="pnl_log_normal_chat" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextArea fx:id="txt_log_normal_chat" editable="false" prefHeight="276.0" prefWidth="480.0" style="-fx-control-inner-background: #202023;  -fx-text-fill: white; -fx-highlight-text-fill: white;" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="血盟">
+                     <content>
+                        <AnchorPane fx:id="pnl_log_pledge_chat" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextArea fx:id="txt_log_pledge_chat" editable="false" prefHeight="276.0" prefWidth="480.0" style="-fx-control-inner-background: #202023;  -fx-text-fill: white; -fx-highlight-text-fill: white;" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="隊伍">
+                     <content>
+                        <AnchorPane fx:id="pnl_log_party_chat" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextArea fx:id="txt_log_party_chat" editable="false" prefHeight="276.0" prefWidth="480.0" style="-fx-control-inner-background: #202023;  -fx-text-fill: white; -fx-highlight-text-fill: white;" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="悄悄話">
+                     <content>
+                        <AnchorPane fx:id="pnl_log_whisper_chat" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextArea fx:id="txt_log_whisper_chat" editable="false" prefHeight="276.0" prefWidth="480.0" style="-fx-control-inner-background: #202023;  -fx-text-fill: white; -fx-highlight-text-fill: white;" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="買賣">
+                     <content>
+                        <AnchorPane fx:id="pnl_log_trade_chat" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextArea fx:id="txt_log_trade_chat" editable="false" prefHeight="276.0" prefWidth="480.0" style="-fx-control-inner-background: #202023;  -fx-text-fill: white; -fx-highlight-text-fill: white;" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+            <Pane prefHeight="3.0" prefWidth="200.0" />
+            <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="327.0">
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="5.0" />
+                  <TextField fx:id="txt_input_world_chat_id" prefHeight="23.0" prefWidth="71.0" style="-fx-control-inner-background: #202023; -fx-text-fill: white; -fx-highlight-text-fill: white;" text="梅蒂斯" />
+                  <Pane prefHeight="67.0" prefWidth="5.0" />
+                  <TextField fx:id="txt_input_world_chat_message" prefHeight="23.0" prefWidth="395.0" promptText="請輸入聊天訊息。" style="-fx-control-inner-background: #202023; -fx-text-fill: white; -fx-highlight-text-fill: white;" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="chart_cpu_container" layoutX="10.0" layoutY="400.0" prefHeight="240.0" prefWidth="600.0">
+         <children>
+            <StackedAreaChart fx:id="chart_cpu" prefHeight="339.0" prefWidth="340.0">
+              <xAxis>
+                <CategoryAxis tickLabelFill="WHITE" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis autoRanging="false" minorTickCount="10" side="LEFT" tickLabelFill="WHITE" tickLabelGap="10.0" tickLength="10.0" tickUnit="10.0" />
+              </yAxis>
+            </StackedAreaChart>
+         </children>
+      </VBox>
+      <VBox fx:id="chart_memory_container" layoutX="610.0" layoutY="400.0" prefHeight="240.0" prefWidth="600.0">
+         <children>
+            <StackedAreaChart fx:id="chart_memory" prefHeight="339.0" prefWidth="340.0">
+               <xAxis>
+                  <CategoryAxis tickLabelFill="WHITE" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis autoRanging="false" minorTickCount="100" minorTickLength="10.0" side="LEFT" tickLabelFill="WHITE" tickLabelGap="10.0" tickLength="10.0" tickUnit="100.0" upperBound="1000.0" />
+               </yAxis>
+            </StackedAreaChart>
+         </children>
+      </VBox>
+      <VBox fx:id="chart_thread_container" layoutX="18.0" layoutY="626.0" prefHeight="240.0" prefWidth="600.0">
+         <children>
+            <StackedAreaChart fx:id="chart_thread" prefHeight="339.0" prefWidth="340.0">
+               <xAxis>
+                  <CategoryAxis tickLabelFill="WHITE" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis autoRanging="false" minorTickCount="100" minorTickLength="10.0" side="LEFT" tickLabelFill="WHITE" tickLabelGap="10.0" tickLength="10.0" tickUnit="100.0" upperBound="1000.0" />
+               </yAxis>
+            </StackedAreaChart>
+         </children>
+      </VBox>
+      <VBox fx:id="chart_object_container" layoutX="642.0" layoutY="640.0" prefHeight="240.0" prefWidth="600.0">
+         <children>
+            <StackedAreaChart fx:id="chart_object" prefHeight="339.0" prefWidth="340.0">
+               <xAxis>
+                  <CategoryAxis tickLabelFill="WHITE" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis autoRanging="false" minorTickCount="100" minorTickLength="10.0" side="LEFT" tickLabelFill="WHITE" tickLabelGap="10.0" tickLength="10.0" tickUnit="300.0" upperBound="3000.0" />
+               </yAxis>
+            </StackedAreaChart>
+         </children>
+      </VBox>
+   </children>
+</Pane>
