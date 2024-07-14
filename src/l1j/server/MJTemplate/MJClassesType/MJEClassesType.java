@@ -65,8 +65,8 @@ static{
 		_gfxToClass.put(L1PcInstance.CLASSID_DRAGONKNIGHT_FEMALE,					DKNIGHT);
 		_gfxToClass.put(L1PcInstance.CLASSID_BLACKWIZARD_MALE, 						WITCH);
 		_gfxToClass.put(L1PcInstance.CLASSID_BLACKWIZARD_FEMALE, 					WITCH);
-		_gfxToClass.put(L1PcInstance.CLASSID_전사_MALE, 								WARRIOR);
-		_gfxToClass.put(L1PcInstance.CLASSID_전사_FEMALE, 							WARRIOR);
+		_gfxToClass.put(L1PcInstance.CLASSID_戰士_MALE, 								WARRIOR);
+		_gfxToClass.put(L1PcInstance.CLASSID_戰士_FEMALE, 							WARRIOR);
 		_gfxToClass.put(L1PcInstance.CLASSID_FENCER_MALE, 							FENCER);
 		_gfxToClass.put(L1PcInstance.CLASSID_FENCER_FEMALE, 						FENCER);
 		_gfxToClass.put(L1PcInstance.CLASSID_LANCER_MALE, 							LANCER);
