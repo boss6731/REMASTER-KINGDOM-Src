@@ -78,7 +78,7 @@
             // 檢查物品 ID 是否存在於 ItemTable 中
          if (ItemTable.getInstance().getTemplate(getItemId()) == null) {
                 // 如果物品 ID 不存在，輸出錯誤信息並返回 false
-             System.out.println("MagicDoll：不存在的物品編號: " + getItemId());
+             System.out.println("魔法娃娃：不存在的物品編號: " + getItemId());
              return false; // 返回 false 表示初始化失敗
          }
 
