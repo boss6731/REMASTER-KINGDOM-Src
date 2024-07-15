@@ -479,7 +479,7 @@ private void stMouseClicked(java.awt.event.MouseEvent evt) {
         serverstart = true;
         /** 如果服務器已經在運行中 */
     } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "服務器已經在運行中。", "Server Message",
+        javax.swing.JOptionPane.showMessageDialog(this, "服務器已經在運行中。", "伺服器訊息",
             javax.swing.JOptionPane.ERROR_MESSAGE);
     }
 }
@@ -491,7 +491,7 @@ private void exMouseClicked(java.awt.event.MouseEvent evt) {
         /**
          * 保存每個角色和服務器數據，然後安全關閉
          */
-        int a = JOptionPane.showConfirmDialog(this, "確定要關閉服務器嗎？", "Server Message", 2,
+        int a = JOptionPane.showConfirmDialog(this, "確定要關閉服務器嗎？", "伺服器訊息", 2,
             JOptionPane.INFORMATION_MESSAGE);
         if (a == JOptionPane.YES_OPTION) {
             GameServer.getInstance().shutdownWithCountdown(0); // 帶倒計時的關閉服務器
@@ -521,7 +521,7 @@ private void bufMouseClicked(java.awt.event.MouseEvent evt) {
     if (serverstart) {
         /** 處理各種事件 */
         Object smallList[] = { "全屬性增益", "致命蟲賽跑", "無盡戰鬥", "全域禁言", "解除全域禁言" };
-        String value = (String) javax.swing.JOptionPane.showInputDialog(this, "要啟動哪個事件？", " Server Message",
+        String value = (String) javax.swing.JOptionPane.showInputDialog(this, "要啟動哪個事件？", " 伺服器訊息",
                 JOptionPane.QUESTION_MESSAGE, null, smallList, smallList[0]);
         if (value != null) {
             if (value.equals("致命蟲賽跑")) {
@@ -542,19 +542,19 @@ private void bufMouseClicked(java.awt.event.MouseEvent evt) {
                 L1World.getInstance().set_worldChatElabled(true);
                 txtGlobalChat.append("全域禁言已解除");
             } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "服務準備中...", " Server Message",
+                javax.swing.JOptionPane.showMessageDialog(this, "服務準備中...", " 伺服器訊息",
                         javax.swing.JOptionPane.INFORMATION_MESSAGE);
             }
         }
     } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "伺服器未運行。", " Server Message",
+        javax.swing.JOptionPane.showMessageDialog(this, "伺服器未運行。", " 伺服器訊息",
                 javax.swing.JOptionPane.ERROR_MESSAGE);
     }
 }
 
 /** 伺服器製作資訊點擊事件 */
 private void infoMouseClicked(java.awt.event.MouseEvent evt) {
-    javax.swing.JOptionPane.showMessageDialog(this, "製作：MJCodes", "Server Message",
+    javax.swing.JOptionPane.showMessageDialog(this, "製作：MJCodes", "伺服器訊息",
             javax.swing.JOptionPane.INFORMATION_MESSAGE);
 }
 
@@ -580,10 +580,10 @@ private void info1MouseClicked(java.awt.event.MouseEvent evt) {
     /** 顯示線程數量、數據庫池大小以及其他不可見的伺服器相關信息 */
     try {
         if (serverstart)
-            javax.swing.JOptionPane.showMessageDialog(this, "池：未使用 - 最大：未使用", "Server Message",
+            javax.swing.JOptionPane.showMessageDialog(this, "池：未使用 - 最大：未使用", "伺服器訊息",
                     javax.swing.JOptionPane.INFORMATION_MESSAGE);
         else
-            javax.swing.JOptionPane.showMessageDialog(this, "伺服器未運行。", "Server Message",
+            javax.swing.JOptionPane.showMessageDialog(this, "伺服器未運行。", "伺服器訊息",
                     javax.swing.JOptionPane.ERROR_MESSAGE);
     } catch (Exception e) {
     }
@@ -611,7 +611,7 @@ private void logsvMouseClicked(java.awt.event.MouseEvent evt) {
         setting.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setting.setVisible(true);
     } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "伺服器未運行。", "Server Message",
+        javax.swing.JOptionPane.showMessageDialog(this, "伺服器未運行。", "伺服器訊息",
                 javax.swing.JOptionPane.ERROR_MESSAGE);
     }
 }
@@ -625,7 +625,7 @@ private void logclMouseClicked(java.awt.event.MouseEvent evt) {
             e.printStackTrace();
         }
     } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "伺服器未運行。", "Server Message",
+        javax.swing.JOptionPane.showMessageDialog(this, "伺服器未運行。", "伺服器訊息",
                 javax.swing.JOptionPane.ERROR_MESSAGE);
     }
 }
@@ -660,13 +660,13 @@ private void setMouseClicked(java.awt.event.MouseEvent evt) {
     Config.ServerRates.EnchantChanceArmor = armor;
     int enchant = Integer.parseInt(enweapon.getText());
     Config.ServerRates.EnchantChanceWeapon = enchant;
-    txtGlobalChat.append("\n [  伺服器設置  ]");
-    txtGlobalChat.append("\n [SET] 聊天等級 : " + Config.ServerAdSetting.GLOBALCHATLEVEL);
-    txtGlobalChat.append("\n [SET] 最大在線用戶 : " + Config.Login.MaximumOnlineUsers);
-    txtGlobalChat.append("\n [SET] 經驗倍率 : " + Exprate2 + " - 金幣 : " + Aden2 + " - 物品掉落 : " + Droprate2);
-    txtGlobalChat.append("\n [SET] 負重限制 : " + weight2 + " - 法律率 : " + lawful2 + " - 業力率 : " + karma2);
-    txtGlobalChat.append("\n [SET] [強化] 武器 : " + enchant + " - 盔甲 : " + armor);
-    txtGlobalChat.append("\n [  伺服器設置完成 ]");
+    txtGlobalChat.append("\n          [  伺服器設置  ]");
+    txtGlobalChat.append("\n    [SET] 聊天等級 : " + Config.ServerAdSetting.GLOBALCHATLEVEL);
+    txtGlobalChat.append("\n    [SET] 最大在線用戶 : " + Config.Login.MaximumOnlineUsers);
+    txtGlobalChat.append("\n    [SET] 經驗倍率 : " + Exprate2 + " - Adena : " + Aden2 + " - 物品掉落 : " + Droprate2);
+    txtGlobalChat.append("\n    [SET] 負重限制 : " + weight2 + " - 法律率 : " + lawful2 + " - 業力率 : " + karma2);
+    txtGlobalChat.append("\n    [SET] [強化] 武器 : " + enchant + " - 盔甲 : " + armor);
+    txtGlobalChat.append("\n       [  伺服器設置完成 ]");
     setting.setVisible(false);
 }
 /** 伺服器聊天事件 */
@@ -692,14 +692,14 @@ private void chatKeyPressed(java.awt.event.KeyEvent evt) {
                         pc.sendPackets(new S_SystemMessage("[******] -> " + chat.getText()));
                     } else {
                         javax.swing.JOptionPane.showMessageDialog(this,
-                                "在世界中找不到名為 " + name.getText() + " 的角色。", "Server Message",
+                                "在世界中找不到名為 " + name.getText() + " 的角色。", "伺服器訊息",
                                 javax.swing.JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 chat.setText("");
             }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "Server Message",
+            javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "伺服器訊息",
                     javax.swing.JOptionPane.ERROR_MESSAGE);
             chat.setText("");
         }
@@ -736,25 +736,22 @@ private void menu1ActionPerformed(java.awt.event.ActionEvent evt) {
                 L1PcInstance players = L1World.getInstance().getPlayer(userlist.getSelectedItem());
                 if (players != null) {
                     GameServer.disconnectChar(userlist.getSelectedItem());
-                    javax.swing.JOptionPane.showMessageDialog(this, "已成功強制踢出 " + players.getName(),
-                            "Server Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    javax.swing.JOptionPane.showMessageDialog(this, "已成功強制踢出 " + players.getName(),"伺服器訊息", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                     userlist.remove(userlist.getSelectedItem());
                 } else {
-                    javax.swing.JOptionPane.showMessageDialog(this,
-                            "世界中不存在名為 " + userlist.getSelectedItem() + " 的角色。", "Server Message",
+                    javax.swing.JOptionPane.showMessageDialog(this,"世界中不存在名為 " + userlist.getSelectedItem() + " 的角色。", "伺服器訊息",
                             javax.swing.JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception e) {
-                javax.swing.JOptionPane.showMessageDialog(this, "強制踢出 " + userlist.getSelectedItem() + " 失敗。",
-                        "Server Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "強制踢出 " + userlist.getSelectedItem() + " 失敗。","伺服器訊息", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             } finally {
             }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "未指定角色名稱。", "Server Message",
+            javax.swing.JOptionPane.showMessageDialog(this, "未指定角色名稱。", "伺服器訊息",
                     javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "Server Message",
+        javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "伺服器訊息",
                 javax.swing.JOptionPane.ERROR_MESSAGE);
     }
 }
@@ -771,16 +768,14 @@ private void menu2ActionPerformed(java.awt.event.ActionEvent evt) {
                 }
                 GameServer.disconnectChar(pc);
                 userlist.remove(userlist.getSelectedItem());
-                javax.swing.JOptionPane.showMessageDialog(this, "已成功強制踢出、封鎖 " + pc.getName(),
-                        "Server Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "已成功強制踢出、封鎖 " + pc.getName(), "伺服器訊息", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             } else {
-                javax.swing.JOptionPane.showMessageDialog(this,
-                        "世界中不存在名為 " + userlist.getSelectedItem() + " 的角色。", " Server Message",
+                javax.swing.JOptionPane.showMessageDialog(this,"世界中不存在名為 " + userlist.getSelectedItem() + " 的角色。", " 伺服器訊息",
                         javax.swing.JOptionPane.ERROR_MESSAGE);
             }
         }
     } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "Server Message",
+        javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "伺服器訊息",
                 javax.swing.JOptionPane.ERROR_MESSAGE);
     }
 }
@@ -794,11 +789,11 @@ private void menu3ActionPerformed(java.awt.event.ActionEvent evt) {
                 new infomation(pc);
             }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "已有其他操作正在進行。", "Server Message",
+            javax.swing.JOptionPane.showMessageDialog(this, "已有其他操作正在進行。", "伺服器訊息",
                     javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "Server Message",
+        javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "伺服器訊息",
                 javax.swing.JOptionPane.ERROR_MESSAGE);
     }
 }
@@ -807,10 +802,9 @@ private void menu3ActionPerformed(java.awt.event.ActionEvent evt) {
 private void menu4ActionPerformed(java.awt.event.ActionEvent evt) {
     if (serverstart) {
         iplist.remove(iplist.getSelectedItem());
-        javax.swing.JOptionPane.showMessageDialog(this, "已刪除封鎖列表中的 IP：" + iplist.getSelectedItem(),
-                "Server Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        javax.swing.JOptionPane.showMessageDialog(this, "已刪除封鎖列表中的 IP：" + iplist.getSelectedItem(), "伺服器訊息", javax.swing.JOptionPane.INFORMATION_MESSAGE);
     } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "Server Message",
+        javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "伺服器訊息",
                 javax.swing.JOptionPane.ERROR_MESSAGE);
     }
 }
@@ -820,10 +814,9 @@ private void menu5ActionPerformed(java.awt.event.ActionEvent evt) {
     if (serverstart) {
         IpTable.getInstance().liftBanIp(iplist.getSelectedItem());
         iplist.remove(iplist.getSelectedItem());
-        javax.swing.JOptionPane.showMessageDialog(this, "已從封鎖列表和數據庫中刪除 IP：" + iplist.getSelectedItem(),
-                "Server Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        javax.swing.JOptionPane.showMessageDialog(this, "已從封鎖列表和數據庫中刪除 IP：" + iplist.getSelectedItem(), "伺服器訊息", javax.swing.JOptionPane.INFORMATION_MESSAGE);
     } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "Server Message",
+        javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "伺服器訊息",
                 javax.swing.JOptionPane.ERROR_MESSAGE);
     }
 }
@@ -837,11 +830,11 @@ private void menu7ActionPerformed(java.awt.event.ActionEvent evt) {
                 name.setText(pc.getName());
             }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "已有其他操作正在進行。", "Server Message",
+            javax.swing.JOptionPane.showMessageDialog(this, "已有其他操作正在進行。", "伺服器訊息",
                     javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "Server Message",
+        javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "伺服器訊息",
                 javax.swing.JOptionPane.ERROR_MESSAGE);
     }
 }
@@ -855,11 +848,11 @@ private void menu6ActionPerformed(java.awt.event.ActionEvent evt) {
                 new Give(pc);
             }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "操作已在進行中。", "Server Message",
+            javax.swing.JOptionPane.showMessageDialog(this, "操作已在進行中。", "伺服器訊息",
                     javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "Server Message",
+        javax.swing.JOptionPane.showMessageDialog(this, "伺服器尚未啟動。", "伺服器訊息",
                 javax.swing.JOptionPane.ERROR_MESSAGE);
     }
 }
