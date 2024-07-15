@@ -41,16 +41,16 @@
    }
 
    public void reroding() {
-     this.loggingConfig[0] = Config.LogStatus.LoggingChatNormal;
-     this.loggingConfig[1] = Config.LogStatus.LoggingChatWhisper;
-     this.loggingConfig[2] = Config.LogStatus.LoggingChatShout;
-     this.loggingConfig[3] = Config.LogStatus.LoggingChatWorld;
-     this.loggingConfig[4] = Config.LogStatus.LoggingChatClan;
-     this.loggingConfig[11] = Config.LogStatus.LoggingChatParty;
-     this.loggingConfig[13] = Config.LogStatus.LoggingChatCombined;
-     this.loggingConfig[14] = Config.LogStatus.LoggingChatChatParty;
-     this.loggingConfig[15] = true;
-     System.out.println("ChatLogTable 리로드");
+     this.loggingConfig[0] = Config.LogStatus.LoggingChatNormal; // 設置普通聊天日志配置
+     this.loggingConfig[1] = Config.LogStatus.LoggingChatWhisper; // 設置私聊日志配置
+     this.loggingConfig[2] = Config.LogStatus.LoggingChatShout; // 設置喊話日志配置
+     this.loggingConfig[3] = Config.LogStatus.LoggingChatWorld; // 設置世界聊天日志配置
+     this.loggingConfig[4] = Config.LogStatus.LoggingChatClan; // 設置家族聊天日志配置
+     this.loggingConfig[11] = Config.LogStatus.LoggingChatParty; // 設置隊伍聊天日志配置
+     this.loggingConfig[13] = Config.LogStatus.LoggingChatCombined; // 設置綜合聊天日志配置
+     this.loggingConfig[14] = Config.LogStatus.LoggingChatChatParty; // 設置聊天派對日志配置
+     this.loggingConfig[15] = true; // 開啟第15個日志配置
+     System.out.println("ChatLogTable 重新加載"); // 輸出重新加載日志消息
    }
 
 
