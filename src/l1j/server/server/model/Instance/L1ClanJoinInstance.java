@@ -18,8 +18,11 @@
  {
    private static final long serialVersionUID = 1L;
    private static final int USE_ITEM_ID = 3000248;
-   private static final ConcurrentHashMap<Integer, L1ClanJoinInstance> _clan_to_cj = new ConcurrentHashMap<>(32); private String _name; private String _title; private int _owner_id; private int _clan_id;
-
+     private static final ConcurrentHashMap<Integer, L1ClanJoinInstance> _clan_to_cj = new ConcurrentHashMap<>(32);
+     private String _name;
+     private String _title;
+     private int _owner_id;
+     private int _clan_id;
    public static boolean ban_user(L1PcInstance pc) {
      L1ClanJoinInstance cjInstance = _clan_to_cj.get(Integer.valueOf(pc.getClanid()));
      if (cjInstance == null) {
