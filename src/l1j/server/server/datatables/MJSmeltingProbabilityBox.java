@@ -114,7 +114,7 @@
          }
 
 // 使用MS949編碼將讀取到的字節數組轉換成字符串
-         String boxesMessage = new String(buff, "MS949");
+         String boxesMessage = new String(buff, "UTF-8");
 // 以換行符分割字符串，得到各個條目
          String[] boxesInfo = boxesMessage.split("\r\n");
          int count = boxesInfo.length;
