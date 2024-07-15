@@ -87,7 +87,7 @@
          int flag = rs.getInt("flag");
          obj = FLAG_DATA.get(Integer.valueOf(flag));
          if (obj == null) {
-           System.out.println(String.format("[L1TimeCollectionLoader] DURATION NOT FOUND FLAG(%d)", new Object[] { Integer.valueOf(flag) }));
+           System.out.println(String.format("[L1TimeCollectionLoader] 找不到持續時間標誌 (%d)", new Object[] { Integer.valueOf(flag) }));
            continue;
          }
          obj.putDuration(new L1TimeCollectionDuration(rs));
@@ -101,7 +101,7 @@
          int flag = rs.getInt("flag");
          obj = FLAG_DATA.get(Integer.valueOf(flag));
          if (obj == null) {
-           System.out.println(String.format("[L1TimeCollectionLoader] MATERIAL NOT FOUND FLAG(%d)", new Object[] { Integer.valueOf(flag) }));
+           System.out.println(String.format("[L1TimeCollectionLoader] 材料找不到標誌 (%d)", new Object[] { Integer.valueOf(flag) }));
            continue;
          }
          obj.putMaterial(new L1TimeCollectionMaterial(rs));
@@ -115,7 +115,7 @@
          int flag = rs.getInt("flag");
          obj = FLAG_DATA.get(Integer.valueOf(flag));
          if (obj == null) {
-           System.out.println(String.format("[L1TimeCollectionLoader] ABLITY NOT FOUND FLAG(%d)", new Object[] { Integer.valueOf(flag) }));
+           System.out.println(String.format("[L1TimeCollectionLoader] 找不到能力標誌 (%d)", new Object[] { Integer.valueOf(flag) }));
            continue;
          }
          obj.putAblity(new L1TimeCollectionAblity(rs));
