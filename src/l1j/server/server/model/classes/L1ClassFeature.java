@@ -34,7 +34,7 @@
      }
      if (classId == 20567 || classId == 20577)
      {
-       return new L1전사ClassFeature();
+       return new L1戰士ClassFeature();
      }
      if (classId == 18520 || classId == 18499)
      {
