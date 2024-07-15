@@ -134,10 +134,8 @@
        l1skills.set_Castle_Magic(rs.getString("Castle_Magic").equalsIgnoreCase("true"));
        l1skills.set_SafetyZone_Magic(rs.getString("SafetyZone_Magic").equalsIgnoreCase("true"));
 
-       this._skills.put(new Integer(skill_id), l1skills);
-     }
-     _log.config("스킬 " + this._skills.size() + "건 로드");
-   }
+      this._skills.put(Integer.valueOf(skill_id), l1skills); // 使用 Integer.valueOf 改進
+       _log.config("技能 " + this._skills.size() + " 筆已加載"); // 記錄技能數量的日志消息
 
 
    public void spellMastery(int playerobjid, int skillid, String skillname, int active, int time) {
