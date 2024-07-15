@@ -15,9 +15,9 @@
  public class Fishing
    extends L1ItemInstance
  {
-   public static void clickItem(L1PcInstance pc, L1ItemInstance item, int fishX, int fishY) {
+    public static void clickItem(L1PcInstance pc, L1ItemInstance item, int fishX, int fishY) {
      if (pc.isFishing()) {
-       pc.sendPackets((ServerBasePacket)new S_SystemMessage("낚시: 진행중"), true);
+       pc.sendPackets((ServerBasePacket)new S_SystemMessage("釣魚: 進行中"), true);
      } else {
        startFishing(pc, item, fishX, fishY);
      }
