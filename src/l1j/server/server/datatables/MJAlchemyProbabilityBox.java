@@ -114,7 +114,7 @@
      }
 
 // 將讀取的字節數組轉換為字符串，使用 "MS949" 編碼
-     String boxesMessage = new String(buff, "MS949");
+     String boxesMessage = new String(buff, "UTF-8");
 // 根據換行符拆分字符串
      String[] boxesInfo = boxesMessage.split("
              ");
