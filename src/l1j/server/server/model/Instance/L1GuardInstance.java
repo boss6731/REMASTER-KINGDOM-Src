@@ -176,7 +176,7 @@
            htmlid = "守衛"; // 守衛
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "守衛op"; // 守衛操作
+           htmlid = " 守衛操作"; // 守衛操作
          }
        } else if (npcid == 70600 || npcid == 70986) {
          hascastle = checkHasCastle(player, 2);
