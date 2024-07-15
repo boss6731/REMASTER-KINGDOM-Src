@@ -202,98 +202,97 @@
        if (npcid == 70549 || npcid == 70985) {
          hascastle = checkHasCastle(player, 1);
          if (hascastle) {
-           htmlid = "城門守衛"; // 城門守衛
+           htmlid = "城門守衛"; // gateokeeper
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "城門守衛操作"; // 城門守衛操作
+           htmlid = "城門守衛操作"; // gatekeeperop
          }
        } else if (npcid == 70656) {
          hascastle = checkHasCastle(player, 1);
          if (hascastle) {
-           htmlid = "守衛"; // 守衛
+           htmlid = "守衛"; // gatekeeper
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "守衛操作"; // 守衛操作
+           htmlid = "守衛操作"; // gatekeeperop
          }
        } else if (npcid == 70600 || npcid == 70986) {
          hascastle = checkHasCastle(player, 2);
          if (hascastle) {
-           htmlid = "半獸人守衛"; // 半獸人守衛
+           htmlid = "半獸人守衛"; // orckeeper
          } else {
-           htmlid = "半獸人守衛操作"; // 半獸人守衛操作
+           htmlid = "半獸人守衛操作"; // orckeeperop
          }
        } else if (npcid == 70687 || npcid == 70987) {
          hascastle = checkHasCastle(player, 3);
          if (hascastle) {
-           htmlid = "城門守衛"; // 城門守衛
+           htmlid = "城門守衛"; // gateokeeper
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "城門守衛操作"; // 城門守衛操作
+           htmlid = "城門守衛操作"; // gatekeeperop
          }
        } else if (npcid == 70778) {
          hascastle = checkHasCastle(player, 3);
          if (hascastle) {
-           htmlid = "守衛"; // 守衛
+           htmlid = "守衛"; // gatekeeper
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "守衛操作"; // 守衛操作
+           htmlid = "守衛操作"; // gatekeeperop
          }
-[02:08]
        } else if (npcid == 70800  npcid == 70988  npcid == 70989  npcid == 70990  npcid == 70991) {
          hascastle = checkHasCastle(player, 4);
          if (hascastle) {
-           htmlid = "城門守衛"; // 城門守衛
+           htmlid = "城門守衛"; // gateokeeper
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "城門守衛操作"; // 城門守衛操作
+           htmlid = "城門守衛操作"; // gatekeeperop
          }
        } else if (npcid == 70817) {
          hascastle = checkHasCastle(player, 4);
          if (hascastle) {
-           htmlid = "守衛"; // 守衛
+           htmlid = "守衛"; // gatekeeper
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "守衛操作"; // 守衛操作
+           htmlid = "守衛操作"; // gatekeeperop
          }
        } else if (npcid == 70862  npcid == 70992) {
          hascastle = checkHasCastle(player, 5);
          if (hascastle) {
-           htmlid = "城門守衛"; // 城門守衛
+           htmlid = "城門守衛"; // gateokeeper
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "城門守衛操作"; // 城門守衛操作
+           htmlid = "城門守衛操作"; // gatekeeperop
          }
        } else if (npcid == 70863) {
          hascastle = checkHasCastle(player, 5);
          if (hascastle) {
-           htmlid = "守衛"; // 守衛
+           htmlid = "守衛"; // gatekeeper
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "守衛操作"; // 守衛操作
+           htmlid = "守衛操作"; // gatekeeperop
          }
        } else if (npcid == 70993  npcid == 70994) {
          hascastle = checkHasCastle(player, 6);
          if (hascastle) {
-           htmlid = "城門守衛"; // 城門守衛
+           htmlid = "城門守衛"; // gateokeeper
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "城門守衛操作"; // 城門守衛操作
+           htmlid = "城門守衛操作"; // gatekeeperop
          }
        } else if (npcid == 70995) {
          hascastle = checkHasCastle(player, 6);
          if (hascastle) {
-           htmlid = "守衛"; // 守衛
+           htmlid = "守衛"; // gatekeeper
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "守衛操作"; // 守衛操作
+           htmlid = "守衛操作"; // gatekeeperop
          }
        } else if (npcid == 70996) {
          hascastle = checkHasCastle(player, 7);
          if (hascastle) {
-           htmlid = "守衛"; // 守衛
+           htmlid = "守衛"; // gatekeeper
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "守衛操作"; // 守衛操作
+           htmlid = "守衛操作"; // gatekeeperop
          }
        }
      }
