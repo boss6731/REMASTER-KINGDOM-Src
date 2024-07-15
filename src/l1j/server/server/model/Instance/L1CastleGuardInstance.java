@@ -36,17 +36,22 @@
    public void searchTarget() {
      L1PcInstance targetPlayer = null;
 
+    // 遍歷視野範圍內的玩家
      for (L1PcInstance pc : L1World.getInstance().getVisiblePlayer((L1Object)this)) {
 
+    // 跳過當前 HP 為 0、死亡、GM 或幽靈玩家
        if (pc.getCurrentHp() <= 0 || pc.isDead() || pc.isGm() || pc.isGhost()) {
          continue;
        }
+      // 檢查玩家是否不可見或 NPC 是否具有攻擊不可見的能力
        if (!pc.isInvisble() || getNpcTemplate().is_agrocoi()) {
+        // 如果玩家是通緝犯，設置為目標
          if (pc.isWanted()) {
            targetPlayer = pc;
 
            break;
          }
+    // 如果玩家的家族參與了攻城戰，設置為目標並標記為攻擊家族
          if (MJWar.isOffenseClan(pc.getClan())) {
            targetPlayer = pc;
            this.isAttackClan = true;
@@ -55,6 +60,8 @@
          }
        }
      }
+
+    // 如果未找到目標玩家，則增加檢查計數並隨機改變方向
      if (targetPlayer == null) {
        this._check_count++;
        if (this._check_count == 30) {
@@ -66,22 +73,26 @@
        }
      }
 
+    // 如果找到目標玩家，檢查其所在區域的城堡戰狀態
      if (targetPlayer != null) {
        int castleId = 0;
        castleId = L1CastleLocation.getCastleIdByArea(targetPlayer);
        if (castleId != 0) {
          boolean isNowWar = MJCastleWarBusiness.getInstance().isNowWar(castleId);
+        // 如果當前城堡在戰爭中且目標玩家不是攻擊家族成員，則取消目標
          if (isNowWar && !this.isAttackClan) {
            targetPlayer = null;
          }
        }
      }
 
+      // 設置目標
      if (targetPlayer != null) {
        setTarget(targetPlayer);
      }
    }
 
+   // 設置目標
    public void setTarget(L1PcInstance targetPlayer) {
      if (targetPlayer != null) {
        this._hateList.add(targetPlayer, 0);
@@ -89,7 +100,7 @@
      }
    }
 
-
+   // 無目標時的動作
    public boolean noTarget() {
      if (getLocation().getTileLineDistance(new Point(getHomeX(), getHomeY())) > 0) {
        int dir = moveDirection(getMapId(), getHomeX(), getHomeY());
@@ -153,60 +164,61 @@
        if (npcid == 70549 || npcid == 70985 || npcid == 70656) {
          hascastle = checkHasCastle(player, 1);
          if (hascastle) {
-           htmlid = "gateokeeper";
+           htmlid = "城門守衛";
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "gatekeeperop";
+           htmlid = "城門守衛操作";
          }
        } else if (npcid == 70600 || npcid == 70986) {
          hascastle = checkHasCastle(player, 2);
          if (hascastle) {
-           htmlid = "orckeeper";
+           htmlid = "半獸人守衛";
          } else {
-           htmlid = "orckeeperop";
+           htmlid = "半獸人守衛操作";
          }
        } else if (npcid == 70687 || npcid == 70987 || npcid == 70778) {
          hascastle = checkHasCastle(player, 3);
          if (hascastle) {
-           htmlid = "gateokeeper";
+           htmlid = "城門守衛";
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "gatekeeperop";
+           htmlid = "城門守衛操作";
          }
        } else if (npcid == 70800 || npcid == 70988 || npcid == 70989 || npcid == 70990 || npcid == 70991 || npcid == 70817) {
          hascastle = checkHasCastle(player, 4);
          if (hascastle) {
-           htmlid = "gateokeeper";
+           htmlid = "城門守衛";
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "gatekeeperop";
+           htmlid = "城門守衛操作";
          }
        } else if (npcid == 70862 || npcid == 70992 || npcid == 70863) {
          hascastle = checkHasCastle(player, 5);
          if (hascastle) {
-           htmlid = "gateokeeper";
+           htmlid = "城門守衛";
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "gatekeeperop";
+           htmlid = "城門守衛操作";
          }
        } else if (npcid == 70993 || npcid == 70994 || npcid == 70995) {
          hascastle = checkHasCastle(player, 6);
          if (hascastle) {
-           htmlid = "gateokeeper";
+           htmlid = "城門守衛";
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "gatekeeperop";
+           htmlid = "城門守衛操作";
          }
        } else if (npcid == 70996) {
          hascastle = checkHasCastle(player, 7);
          if (hascastle) {
-           htmlid = "gatekeeper";
+           htmlid = "守衛";
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "gatekeeperop";
+           htmlid = "守衛操作";
          }
 
        }
+
        else if (npcid == 60514) {
          for (L1Clan clan : L1World.getInstance().getAllClans()) {
            if (clan.getCastleId() == 1) {
