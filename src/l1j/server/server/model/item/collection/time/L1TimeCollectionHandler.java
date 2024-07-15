@@ -119,7 +119,7 @@
    public boolean delete(L1PcInstance pc, L1TimeCollection obj, L1TimeCollectionStatus status) {
      L1TimeCollectionUser user = this.DATA.remove(Integer.valueOf(obj.getFlag()));
      if (user == null) {
-       System.out.println(String.format("[L1TimeCollectionHandler] DELETE RESON(user == null) NAME(%s) FLAG(%d)", new Object[] { this.owner
+       System.out.println(String.format("[L1TimeCollectionHandler] 刪除 RESON（使用者 == null） 名稱（%s） 標誌（%d）", new Object[] { this.owner
 
                .getName(), Integer.valueOf(obj.getFlag()) }));
        return false;
@@ -161,7 +161,7 @@
 
      L1TimeCollectionAblity ablity = user.getObj().getAblity(user.getSumEnchant(), user.getBuffType());
      if (ablity == null) {
-       System.out.println(String.format("[L1TimeCollectionHandler] ABLITY NOT FOUND : SUM_ENCHANT(%d), BUFF_TYPE(%s), NAME(%s)", new Object[] {
+       System.out.println(String.format("[L1TimeCollectionHandler] 找不到能力：SUM_ENCHANT(%d)、BUFF_TYPE(%s)、NAME(%s)", new Object[] {
 
                Integer.valueOf(user.getSumEnchant()), user.getBuffType().getName(), this.owner.getName() }));
        return;
