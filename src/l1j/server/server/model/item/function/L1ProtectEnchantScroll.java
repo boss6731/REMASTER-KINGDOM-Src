@@ -129,7 +129,7 @@
 
              // 如果總機率不等於 1000000，記錄警告信息
              if (totalChance != 1000000) {
-                 _log.warning("(ID:" + getAntiqueBookId() + " / Enchant:" + each.getEnchantLevel() + ") 機率錯誤: 總和是 " + totalChance + "%。請設置為 100%。");
+                 _log.warning("(ID:" + getAntiqueBookId() + " / 強化附魔：" + each.getEnchantLevel() + ") 機率錯誤: 總和是 " + totalChance + "%。請設置為 100%。");
              }
          }
 
@@ -232,13 +232,13 @@
 
 // 檢查物品的附魔等級是否低於最小附魔等級要求
        if (getMinEnchantLevel() != 0 && enchant_level < getMinEnchantLevel()) {
-           pc.sendPackets("\aG附魔 +" + getMinEnchantLevel() + " 之後才可以使用。");
+           pc.sendPackets("\aG強化附魔 +" + getMinEnchantLevel() + " 之後才可以使用。");
            return false; // 返回 false，表示操作失敗
        }
 
 // 檢查物品的附魔等級是否高於或等於最大附魔等級限制
        if (getMaxEnchantLevel() != 0 && enchant_level >= getMaxEnchantLevel()) {
-           pc.sendPackets("\aG附魔 +" + getMaxEnchantLevel() + " 以上的物品無法使用。");
+           pc.sendPackets("\aG強化附魔 +" + getMaxEnchantLevel() + " 以上的物品無法使用。");
            return false; // 返回 false，表示操作失敗
        }
 
