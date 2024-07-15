@@ -78,31 +78,28 @@
      return OK;
    }
 
-   private int parseTown(String type) {
-     if (type.equalsIgnoreCase("TalkingIsland"))
+  private int parseTown(String type) {
+     if (type.equalsIgnoreCase("說話之島"))
        return 1;
-     if (type.equalsIgnoreCase("SilverKnight"))
+     if (type.equalsIgnoreCase("銀騎士"))
        return 2;
-     if (type.equalsIgnoreCase("Gludio"))
+     if (type.equalsIgnoreCase("古魯丁"))
        return 3;
-     if (type.equalsIgnoreCase("OrcForest"))
+     if (type.equalsIgnoreCase("半獸人森林"))
        return 4;
-     if (type.equalsIgnoreCase("Windawood"))
+     if (type.equalsIgnoreCase("風木"))
        return 5;
-     if (type.equalsIgnoreCase("Kent"))
+     if (type.equalsIgnoreCase("肯特"))
        return 6;
-     if (type.equalsIgnoreCase("Giran"))
+     if (type.equalsIgnoreCase("吉倫"))
        return 7;
-     if (type.equalsIgnoreCase("Heine"))
+     if (type.equalsIgnoreCase("海音"))
        return 8;
-     if (type.equalsIgnoreCase("Weldern"))
+     if (type.equalsIgnoreCase("威爾登"))
        return 9;
-     if (type.equalsIgnoreCase("Oren"))
+     if (type.equalsIgnoreCase("歐瑞"))
        return 10;
-     if (type.equalsIgnoreCase("Aden"))
+     if (type.equalsIgnoreCase("亞丁"))
        return 12;
      return 0;
    }
- }
-
-
