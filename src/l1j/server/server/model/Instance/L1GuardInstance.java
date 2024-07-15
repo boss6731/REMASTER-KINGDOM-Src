@@ -165,25 +165,25 @@
        if (npcid == 70549 || npcid == 70985) {
          hascastle = checkHasCastle(player, 1);
          if (hascastle) {
-           htmlid = "城門守衛"; // 城門守衛
+           htmlid = "城門守衛"; // gateokeeper
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = "守衛op"; // 城門守衛操作
+           htmlid = "守衛op"; // gatekeeperop
          }
        } else if (npcid == 70656) {
          hascastle = checkHasCastle(player, 1);
          if (hascastle) {
-           htmlid = "守衛"; // 守衛
+           htmlid = "守衛"; // gatekeeper
            htmldata = new String[] { player.getName() };
          } else {
-           htmlid = " 守衛操作"; // 守衛操作
+           htmlid = "守衛op"; // gatekeeperop
          }
        } else if (npcid == 70600 || npcid == 70986) {
          hascastle = checkHasCastle(player, 2);
          if (hascastle) {
-           htmlid = "半獸人守衛"; // 半獸人守衛
+           htmlid = "半獸人守衛"; // orckeeper
          } else {
-           htmlid = "半獸人守衛操作"; // 半獸人守衛操作
+           htmlid = "半獸人守衛操作"; // orckeeperop
          }
        }
      }
