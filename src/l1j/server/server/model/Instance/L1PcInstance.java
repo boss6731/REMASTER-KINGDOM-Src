@@ -8743,7 +8743,7 @@ public class L1PcInstance extends L1Character {
         byte[] b = getShopChat();
         if (b != null)
             try {
-                return new String(b, "MS949");
+                return new String(b, "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
