@@ -660,14 +660,13 @@ private void setMouseClicked(java.awt.event.MouseEvent evt) {
     Config.ServerRates.EnchantChanceArmor = armor;
     int enchant = Integer.parseInt(enweapon.getText());
     Config.ServerRates.EnchantChanceWeapon = enchant;
-    txtGlobalChat.append("\n          [  伺服器設置  ]");
-    txtGlobalChat.append("\n    [SET] 聊天等級 : " + Config.ServerAdSetting.GLOBALCHATLEVEL);
-    txtGlobalChat.append("\n    [SET] 最大在線用戶 : " + Config.Login.MaximumOnlineUsers);
-    txtGlobalChat.append("\n    [SET] 經驗倍率 : " + Exprate2 + " - Adena : " + Aden2 + " - 物品掉落 : " + Droprate2);
-    txtGlobalChat.append(
-            "\n    [SET] 負重限制 : " + weight2 + " - 法律率 : " + lawful2 + " - 業力率 : " + karma2);
-    txtGlobalChat.append("\n    [SET] [強化] 武器 : " + enchant + " - 盔甲 : " + armor);
-    txtGlobalChat.append("\n       [  伺服器設置完成 ]");
+    txtGlobalChat.append("\n [  伺服器設置  ]");
+    txtGlobalChat.append("\n [SET] 聊天等級 : " + Config.ServerAdSetting.GLOBALCHATLEVEL);
+    txtGlobalChat.append("\n [SET] 最大在線用戶 : " + Config.Login.MaximumOnlineUsers);
+    txtGlobalChat.append("\n [SET] 經驗倍率 : " + Exprate2 + " - 金幣 : " + Aden2 + " - 物品掉落 : " + Droprate2);
+    txtGlobalChat.append("\n [SET] 負重限制 : " + weight2 + " - 法律率 : " + lawful2 + " - 業力率 : " + karma2);
+    txtGlobalChat.append("\n [SET] [強化] 武器 : " + enchant + " - 盔甲 : " + armor);
+    txtGlobalChat.append("\n [  伺服器設置完成 ]");
     setting.setVisible(false);
 }
 /** 伺服器聊天事件 */
