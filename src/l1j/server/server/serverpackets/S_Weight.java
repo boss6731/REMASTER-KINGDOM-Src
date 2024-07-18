@@ -1,32 +1,34 @@
- package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
- import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.Opcodes;
+import l1j.server.server.model.Instance.L1PcInstance;
 
- public class S_Weight extends ServerBasePacket {
-   private static final String S_Weight = "[S] S_Weight";
-
-   public S_Weight(L1PcInstance pc) {
-     writeC(19);
-     writeC(229);
-     writeC(1);
-     writeC(8);
-     writeC(pc.getInventory().getWeight100());
-     writeC(16);
-     write7B(pc.getInventory().getWeight());
-     writeC(24);
-     write7B(pc.getMaxWeight());
-     writeH(0);
-   }
+public class S_Weight extends ServerBasePacket {
 
 
-   public byte[] getContent() {
-     return getBytes();
-   }
+	public S_Weight(L1PcInstance pc) {
+		writeC(Opcodes.S_EXTENDED_PROTOBUF);
+		writeC(0xe5);
+		writeC(0x01);
+		writeC(0x08); // 百分比
+		writeC(pc.getInventory().getWeight100());
+		writeC(0x10); // 持有重量
+		write7B(pc.getInventory().getWeight());
+		writeC(0x18); // 最大重量
+		write7B(pc.getMaxWeight());
+		writeH(0);
+	}
+}
 
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
 
-   public String getType() {
-     return "[S] S_Weight";
-   }
- }
+	@Override
+	public String getType() {
+		return S_Weight;
+	}
 
-
+	private static final String S_Weight = "[S] S_Weight";
+}

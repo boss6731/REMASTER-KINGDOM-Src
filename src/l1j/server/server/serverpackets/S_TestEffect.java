@@ -1,31 +1,32 @@
- package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
+import l1j.server.server.Opcodes;
 
- public class S_TestEffect
-   extends ServerBasePacket
- {
-   private static final String S_TESTEFFECT = "[S] S_TestEffect";
+public class S_TestEffect extends ServerBasePacket {
 
-   public S_TestEffect(int targetId, boolean active) {
-     buildPacket(targetId, active);
-   }
-   private void buildPacket(int targetId, boolean active) {
-     writeC(108);
-     writeC(194);
-     writeD(targetId);
-     writeD(13135);
-     writeD(active ? 1 : 0);
-     writeH(0);
-   }
+	private static final String S_TESTEFFECT = "[S] S_TestEffect";
 
+	public S_TestEffect(int targetId, boolean active) {
+		buildPacket(targetId, active);
+	}
 
-   public byte[] getContent() {
-     return getBytes();
-   }
+	private void buildPacket(int targetId, boolean active) {
+		writeC(Opcodes.S_EVENT);
+		writeC(0xc2); // 這是一個預定義的操作碼
+		writeD(targetId); // 對象ID
+		writeD(13135); // 圖像編號
+		writeD(active ? 0x01 : 0x00); // 刪除或添加
+		writeH(0);
+	}
+}
 
-   public String getType() {
-     return "[S] S_TestEffect";
-   }
- }
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
+	@Override
+	public String getType() {
+		return S_TESTEFFECT;
+	}
 
-
+}

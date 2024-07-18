@@ -1,25 +1,25 @@
- package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
- public class S_ShowSummonList
-   extends ServerBasePacket
- {
-   private static final String S_ShowSummonList = "[S] S_ShowSummonList";
+import l1j.server.server.Opcodes;
 
-   public S_ShowSummonList(int objid) {
-     writeC(144);
-     writeD(objid);
-     writeS("summonlist");
-   }
+public class S_ShowSummonList extends ServerBasePacket {
+	private static final String S_ShowSummonList = "[S] S_ShowSummonList";
 
+	public S_ShowSummonList(int objid) {
+		writeC(Opcodes.S_HYPERTEXT);
+		writeD(objid);
+		writeS("summonlist");
+	}
 
-   public byte[] getContent() {
-     return getBytes();
-   }
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
 
-
-   public String getType() {
-     return "[S] S_ShowSummonList";
-   }
- }
+	@Override
+	public String getType() {
+		return S_ShowSummonList;
+	}
+}
 
 

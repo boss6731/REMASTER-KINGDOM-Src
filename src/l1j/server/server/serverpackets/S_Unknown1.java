@@ -1,17 +1,17 @@
- package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
- import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.Opcodes;
+import l1j.server.server.model.Instance.L1PcInstance;
 
- public class S_Unknown1
-   extends ServerBasePacket {
-   public S_Unknown1(L1PcInstance pc) {
-     writeC(117);
-     writeC(3);
-   }
-
-   public byte[] getContent() {
-     return getBytes();
-   }
- }
+public class S_Unknown1 extends ServerBasePacket {
+	public S_Unknown1(L1PcInstance pc) {
+		writeC(Opcodes.S_ENTER_WORLD_CHECK);
+		writeC(0x03);
+	}
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
+}
 
 

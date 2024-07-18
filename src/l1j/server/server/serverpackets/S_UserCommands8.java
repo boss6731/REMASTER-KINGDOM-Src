@@ -14,8 +14,8 @@
      private void buildPacket(int number) {
          writeC(248); // 寫入一個 byte 類型的數值，值為 248
          writeD(number); // 寫入一個整數類型的數值，這裡是方法的參數 number
-         writeS(" 메티스 "); // 寫入一個字符串，值為 "메티斯"
-         writeS(" 製作秘法書 "); // 寫入一個字符串，值為 "製作秘法書"
+         writeS(" 梅蒂斯 "); // 寫入一個字符串，值為 "梅蒂斯"
+         writeS(" 傳說武器製作秘本 "); // 寫入一個字符串，值為 "製作秘法書"
          writeS(""); // 寫入一個空字符串
          writeS("\n ── +10 惡夢長弓製作 ── \n"+
                  "\n水龍鱗片 (10)個"+

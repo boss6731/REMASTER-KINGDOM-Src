@@ -21,9 +21,9 @@ public class S_UserCommands17 extends ServerBasePacket {
 
 			writeD(number); // 寫入一個整數類型的數值，這裡是方法的參數 number
 
-			writeS(" 메蒂斯 "); // 寫入一個字符串，值為 "메蒂斯" (可能是作者)
+			writeS(" 梅蒂斯 "); // 寫入一個字符串，值為 "메蒂斯" (可能是作者)
 
-			writeS(" 製作秘法書 "); // 寫入一個字符串，值為 "製作秘法書" (可能是日期)
+			writeS(" 傳說武器製作秘本 "); // 寫入一個字符串，值為 "製作秘法書" (可能是日期)
 
 			writeS(""); // 寫入一個空字符串 (可能是標題)
 

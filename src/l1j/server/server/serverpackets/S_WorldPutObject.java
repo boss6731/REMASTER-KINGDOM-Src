@@ -1,36 +1,37 @@
- package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
- import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.Opcodes;
+import l1j.server.server.model.Instance.L1PcInstance;
 
+public class S_WorldPutObject extends ServerBasePacket {
+	// 是否顯示遺忘之島標記...(true：使用, false：不使用)
+	public static final boolean IS_PRESENTATION_MARK = true;
 
- public class S_WorldPutObject
-   extends ServerBasePacket
- {
-   public static final boolean IS_PRESENTATION_MARK = true;
-   private static final int SC_WORLD_PUT_OBJECT_NOTI = 119;
-   public L1PcInstance _pc = null;
-
-
-   public static S_WorldPutObject get(byte[] b) {
-     S_WorldPutObject s = new S_WorldPutObject();
-     s.writeByte(b);
-     return s;
-   }
-
-   private S_WorldPutObject() {
-     writeC(19);
-     writeH(119);
-   }
+	private static final int SC_WORLD_PUT_OBJECT_NOTI = 0x77;
+	public L1PcInstance _pc = null;
 
 
-   public byte[] getContent() {
-     return getBytes();
-   }
+	public static S_WorldPutObject get(byte[] b) {
+		S_WorldPutObject s = new S_WorldPutObject();
+		s.writeByte(b);
+		return s;
+	}
 
+	private S_WorldPutObject() {
+		writeC(Opcodes.S_EXTENDED_PROTOBUF);
+		writeH(SC_WORLD_PUT_OBJECT_NOTI);
+	}
+}
+	
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
 
-   public String getType() {
-     return "S_WorldPutObject";
-   }
- }
+	@Override
+	public String getType() {
+		return "S_WorldPutObject";
+	}
+}
 
 

@@ -22,8 +22,8 @@ public class S_UserCommands1 extends ServerBasePacket {
             private void buildPacket(int number) {
                 writeC(Opcodes.S_BOARD_READ); // 寫入操作碼，用於識別這個數據包的類型
                 writeD(number); // 寫入一個整數類型的數值，這裡是方法的參數 number
-                writeS(" 메蒂斯 "); // 寫入一個字符串，值為 "메蒂斯" (可能是作者)
-                writeS(" 製作秘法書 "); // 寫入一個字符串，值為 "製作秘法書" (可能是日期)
+                writeS(" 梅蒂斯 "); // 寫入一個字符串，值為 "메蒂斯" (可能是作者)
+                writeS(" 傳說武器製作秘本 "); // 寫入一個字符串，值為 "製作秘法書" (可能是日期)
                 writeS(""); // 寫入一個空字符串 (可能是標題)
                     writeS("\n=== 戰士之劍 ===" +
                             "最高級紅寶石(5個)\n" +

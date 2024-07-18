@@ -1,70 +1,77 @@
- package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
- import l1j.server.server.model.Instance.L1PcInstance;
- import l1j.server.server.model.L1Character;
+import l1j.server.server.Opcodes;
+import l1j.server.server.model.L1Character;
+import l1j.server.server.model.Instance.L1PcInstance;
 
- public class S_SkillSound
-   extends ServerBasePacket {
-   private static final String S_SKILL_SOUND = "[S] S_SkillSound";
+public class S_SkillSound extends ServerBasePacket {
+	private static final String S_SKILL_SOUND = "[S] S_SkillSound";
 
-   public static void broadcast(L1Character cha, int id) {
-     S_SkillSound sound = new S_SkillSound(cha.getId(), id);
-     if (cha instanceof L1PcInstance) {
-       L1PcInstance pc = (L1PcInstance)cha;
-       pc.sendPackets(sound, false);
-     }
-     cha.broadcastPacket(sound);
-   }
+	// 靜態方法：廣播技能音效
+	public static void broadcast(L1Character cha, int id){
+		S_SkillSound sound = new S_SkillSound(cha.getId(), id);
+		if(cha instanceof L1PcInstance){
+			L1PcInstance pc = (L1PcInstance)cha;
+			pc.sendPackets(sound, false);
+		}
+		cha.broadcastPacket(sound);
+	}
 
-   public S_SkillSound(int objid, int gfxid, int aid) {
-     buildPacket(objid, gfxid, aid);
-   }
+	// 構造函數重載：用於對象ID, GFX ID 和 AID
+	public S_SkillSound(int objid, int gfxid, int aid) {
+		buildPacket(objid, gfxid, aid);
+	}
 
-   public S_SkillSound(int objid, int gfxid, int aid, int x, int y) {
-     buildPacket(objid, gfxid, aid, x, y);
-   }
+	// 構造函數重載：用於對象ID, GFX ID, AID 以及坐標
+	public S_SkillSound(int objid, int gfxid, int aid, int x, int y) {
+		buildPacket(objid, gfxid, aid, x, y);
+	}
 
-   public S_SkillSound(int objid, int gfxid) {
-     buildPacket(objid, gfxid, 0);
-   }
+	// 構造函數重載：用於僅對象ID和GFX ID
+	public S_SkillSound(int objid, int gfxid) {
+		buildPacket(objid, gfxid, 0);
+	}
 
+	// 私有方法：構建封包，不含坐標
+	private void buildPacket(int objid, int gfxid, int aid) {
+		// TODO: SPR錯誤輸出測試
+		if(gfxid == 1100) {
+			new Throwable().printStackTrace();
+		}
+		// aid 未使用
+		writeC(Opcodes.S_EFFECT); // 寫入操作碼
+		writeD(objid);            // 寫入對象ID
+		writeH(gfxid);            // 寫入GFX ID
+		writeH(0);                // 寫入0，可能表示無額外數據
+		writeD(0x00000000);       // 寫入0，可能表示無額外數據
+	}
 
-   private void buildPacket(int objid, int gfxid, int aid) {
-     if (gfxid == 1100) {
-       (new Throwable()).printStackTrace();
-     }
+	// 私有方法：構建封包，包含坐標
+	private void buildPacket(int objid, int gfxid, int aid, int x, int y) {
+		// TODO: SPR錯誤輸出測試
+		if(gfxid == 1100) {
+			new Throwable().printStackTrace();
+		}
+		// aid 未使用
+		writeC(Opcodes.S_EFFECT); // 寫入操作碼
+		writeD(objid);            // 寫入對象ID
+		writeH(gfxid);            // 寫入GFX ID
+		writeH(0);                // 寫入0，可能表示無額外數據
+		writeD(0x00000000);       // 寫入0，可能表示無額外數據
 
-     writeC(86);
-     writeD(objid);
-     writeH(gfxid);
-     writeH(0);
-     writeD(0);
-   }
+		writeH(x);                // 寫入x坐標
+		writeH(y);                // 寫入y坐標
+	}
 
+	@override
+	public byte[] getContent() {
+		return getBytes();
+	}
 
-   private void buildPacket(int objid, int gfxid, int aid, int x, int y) {
-     if (gfxid == 1100) {
-       (new Throwable()).printStackTrace();
-     }
-
-
-     writeC(86);
-     writeD(objid);
-     writeH(gfxid);
-     writeH(0);
-     writeD(0);
-     writeH(x);
-     writeH(y);
-   }
-
-
-   public byte[] getContent() {
-     return getBytes();
-   }
-
-   public String getType() {
-     return "[S] S_SkillSound";
-   }
- }
+	@override
+	public String getType() {
+		return S_SKILL_SOUND;
+	}
+}
 
 
