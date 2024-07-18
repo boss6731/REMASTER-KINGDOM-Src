@@ -1,38 +1,56 @@
- package l1j.server.server.serverpackets;
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+package l1j.server.server.serverpackets;
+
+import l1j.server.server.Opcodes;
 
 
 
- // 定義 S_MPUpdate 類，繼承自 ServerBasePacket
- public class S_MPUpdate extends ServerBasePacket {
+public class S_MPUpdate extends ServerBasePacket {
 
-     // 構造函數，接受當前 MP 和最大 MP 作為參數
-     public S_MPUpdate(int currentmp, int maxmp) {
-         // 寫入一個字節值 254 作為封包的初始值
-         writeC(254);
 
-         // 判斷 currentmp 的值範圍並寫入適當的值
-         if (currentmp < 1) {
-             writeH(1); // 如果 currentmp 小於 1，寫入 1
-         } else if (currentmp > 32767) {
-             writeH(32767); // 如果 currentmp 大於 32767，寫入 32767
-         } else {
-             writeH(currentmp); // 否則寫入 currentmp 的值
-         }
+	public S_MPUpdate(int currentmp, int maxmp) {
+		writeC(Opcodes.S_MANA_POINT);
 
-         // 判斷 maxmp 的值範圍並寫入適當的值
-         if (maxmp < 1) {
-             writeH(1); // 如果 maxmp 小於 1，寫入 1
-         } else if (maxmp > 32767) {
-             writeH(32767); // 如果 maxmp 大於 32767，寫入 32767
-         } else {
-             writeH(maxmp); // 否則寫入 maxmp 的值
-         }
-     }
 
-     // 獲取封包內容的字節數組
-     public byte[] getContent() {
-         return getBytes();
-     }
- }
+		if (currentmp < 1) {
+			writeH(1);
+		} else if (currentmp > 32767) {
+			writeH(32767);
+		} else {
+			writeH(currentmp);
+		}
+
+
+		if (maxmp < 1) {
+			writeH(1);
+		} else if (maxmp > 32767) {
+			writeH(32767);
+		} else {
+			writeH(maxmp);
+		}
+	}
+
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
+}
 
 

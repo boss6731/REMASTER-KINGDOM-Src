@@ -1,83 +1,84 @@
- package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
+
+import l1j.server.server.Opcodes;
+import l1j.server.server.model.skill.L1SkillId;
+
+public class S_NewSkillIcon extends ServerBasePacket {
 
 
+	public S_NewSkillIcon(int gfxid, int time) {
+		writeC(Opcodes.S_EVENT);
+		writeC(0x9A);
+		writeH(time);
+		writeD(gfxid);
+		writeH(0x00);
+	}
+	public S_NewSkillIcon(int skillId, boolean on, long time) {
+		writeC(Opcodes.S_EXTENDED_PROTOBUF);
+		writeH(0x6E);
+		writeC(0x08);
+		writeC(on ? 2 : 3);
+		writeC(0x10);
+		byteWrite(skillId);
+		if (on) {
+		writeC(0x18);
+		if (time < 0) {
+		byte[] minus = { (byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0x01 };
+		writeByte(minus);
+		} else
+		byteWrite(time);
+		writeC(0x20);
+		if (skillId == L1SkillId.DRAGON_BLESS) {
+		writeC(0x0a); // 10
+		} else {
+		writeC(0x08); // 8
+		}
+		int msgNum = 0;
+		byteWrite(msgNum);
+		writeC(0x48);
+		writeC(0x00);
+		}
+		writeH(0x0050);
+		if (on) {
+		writeC(0x58);
+		writeC(0x01);
+		writeC(0x60);
+		writeC(0x00);
+		writeC(0x68);
+		writeC(0x00);
+		writeC(0x70);
+		writeC(0x00);
+		}
+		writeH(0x00);
+		}
+		public static final int[] hextable = { 0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8a, 0x8b, 0x8c, 0x8d, 0x8e, 0x8f, 0x90, 0x91, 0x92, 0x93, 0x94, 0x95, 0x96, 0x97, 0x98, 0x99, 0x9a, 0x9b, 0x9c, 0x9d, 0x9e, 0x9f, 0xa0, 0xa1,
+		0xa2, 0xa3, 0xa4, 0xa5, 0xa6, 0xa7, 0xa8, 0xa9, 0xaa, 0xab, 0xac, 0xad, 0xae, 0xaf, 0xb0, 0xb1, 0xb2, 0xb3, 0xb4, 0xb5, 0xb6, 0xb7, 0xb8, 0xb9, 0xba, 0xbb, 0xbc, 0xbd, 0xbe, 0xbf, 0xc0, 0xc1, 0xc2, 0xc3, 0xc4, 0xc5, 0xc6, 0xc7, 0xc8,
+		0xc9, 0xca, 0xcb, 0xcc, 0xcd, 0xce, 0xcf, 0xd0, 0xd1, 0xd2, 0xd3, 0xd4, 0xd5, 0xd6, 0xd7, 0xd8, 0xd9, 0xda, 0xdb, 0xdc, 0xdd, 0xde, 0xdf, 0xe0, 0xe1, 0xe2, 0xe3, 0xe4, 0xe5, 0xe6, 0xe7, 0xe8, 0xe9, 0xea, 0xeb, 0xec, 0xed, 0xee, 0xef,
+		0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7, 0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff };
 
- public class S_NewSkillIcon
-   extends ServerBasePacket
- {
-   public S_NewSkillIcon(int gfxid, int time) {
-     writeC(108);
-     writeC(154);
-     writeH(time);
-     writeD(gfxid);
-     writeH(0);
-   }
-   public S_NewSkillIcon(int skillId, boolean on, long time) {
-     writeC(19);
-     writeH(110);
-     writeC(8);
-     writeC(on ? 2 : 3);
-     writeC(16);
-     byteWrite(skillId);
-     if (on) {
-       writeC(24);
-       if (time < 0L) {
-         byte[] minus = { -1, -1, -1, -1, -1, -1, -1, -1, 1 };
-         writeByte(minus);
-       } else {
-         byteWrite(time);
-       }  writeC(32);
-       if (skillId == 8689) {
-         writeC(10);
-       } else {
-         writeC(8);
-       }
-       int msgNum = 0;
-       byteWrite(msgNum);
-       writeC(72);
-       writeC(0);
-     }
-     writeH(80);
-     if (on) {
-       writeC(88);
-       writeC(1);
-       writeC(96);
-       writeC(0);
-       writeC(104);
-       writeC(0);
-       writeC(112);
-       writeC(0);
-     }
-     writeH(0);
-   }
-   public static final int[] hextable = new int[] { 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255 };
-
-
-
-
-   private void byteWrite(long value) {
-     long temp = value / 128L;
-     if (temp > 0L) {
-       writeC(hextable[(int)value % 128]);
-       while (temp >= 128L) {
-         writeC(hextable[(int)temp % 128]);
-         temp /= 128L;
-       }
-       if (temp > 0L) {
-         writeC((int)temp);
-       }
-     } else if (value == 0L) {
-       writeC(0);
-     } else {
-       writeC(hextable[(int)value]);
-       writeC(0);
-     }
-   }
-
-
-   public byte[] getContent() {
-     return getBytes();
-   }
- }
+		private void byteWrite(long value) {
+		long temp = value / 128;
+		if (temp > 0) {
+		writeC(hextable[(int) value % 128]);
+		while (temp >= 128) {
+		writeC(hextable[(int) temp % 128]);
+		temp = temp / 128;
+		}
+		if (temp > 0)
+		writeC((int) temp);
+		} else {
+		if (value == 0) {
+		writeC(0);
+		} else {
+		writeC(hextable[(int) value]);
+		writeC(0);
+		}
+		}
+		}
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
+}
 
 

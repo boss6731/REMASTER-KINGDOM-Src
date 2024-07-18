@@ -1,34 +1,38 @@
-     package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
-     import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.Opcodes;
+import l1j.server.server.model.Instance.L1PcInstance;
 
-     public class S_GameTime1
-       extends ServerBasePacket
-     {
-       private static final String S_GameTime1 = "[S] S_GameTime1";
+public class S_GameTime1 extends ServerBasePacket {
 
-       public S_GameTime1(L1PcInstance pc) {
-         buildPacket(pc);
-       }
+	private static final String S_GameTime1 = "[S] S_GameTime1";
 
-       private void buildPacket(L1PcInstance pc) {
-         writeC(108);
-         writeC(65);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-       }
+	public S_GameTime1(L1PcInstance pc) {
+		buildPacket(pc);
+	}
 
-       public byte[] getContent() {
-         return getBytes();
-       }
+	// 0000 : 7e 41 14 fa 7f 50 80 f9 ~A..P..
 
-       public String getType() {
-         return "[S] S_GameTime1";
-       }
-     }
+	/* 00:00 數據包經過 */
+	private void buildPacket(L1PcInstance pc) {
+		writeC(Opcodes.S_EVENT);
+		writeC(0x41);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+	}
+
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
+
+	public String getType() {
+		return S_GameTime1;
+	}
+}
 
 

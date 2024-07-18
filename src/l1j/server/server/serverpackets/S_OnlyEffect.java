@@ -1,26 +1,26 @@
- package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
- public class S_OnlyEffect
-   extends ServerBasePacket
- {
-   private int _gfxId;
+import l1j.server.server.Opcodes;
 
-   public S_OnlyEffect(int objId, int gfxId) {
-     writeC(86);
-     writeD(objId);
-     writeH(gfxId);
-     this._gfxId = gfxId;
-   }
+public class S_OnlyEffect extends ServerBasePacket {
+	private int _gfxId;
+	
+	public S_OnlyEffect(int objId, int gfxId){
+		writeC(Opcodes.S_EFFECT);
+		writeD(objId);
+		writeH(gfxId);
+		_gfxId = gfxId;
+	}
+	
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
 
-
-   public byte[] getContent() {
-     return getBytes();
-   }
-
-
-   public String getType() {
-     return S_OnlyEffect.class.getName();
-   }
- }
+	@Override
+	public String getType() {
+		return S_OnlyEffect.class.getName();
+	}
+}
 
 

@@ -1,42 +1,56 @@
- package l1j.server.server.serverpackets;
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+package l1j.server.server.serverpackets;
 
- import l1j.server.server.model.L1NpcTalkData;
+import l1j.server.server.Opcodes;
+import l1j.server.server.model.L1NpcTalkData;
 
+public class S_NPCTalkActionTPUrl extends ServerBasePacket {
+	private static final String _S__25_TalkReturnAction = "[S] S_NPCTalkActionTPUrl";
 
+	public S_NPCTalkActionTPUrl(L1NpcTalkData cha, Object[] prices, int objid) {
+		buildPacket(cha, prices, objid);
+	}
 
+	private void buildPacket(L1NpcTalkData npc, Object[] prices, int objid) {
+		String htmlid = "";
+		htmlid = npc.getTeleportURL();
+		writeC(Opcodes.S_HYPERTEXT);
+		writeD(objid);
+		writeS(htmlid);
+		writeH(0x01); // 不明
+		writeH(prices.length); // 參數的數量
 
+		for (Object price : prices) {
+			writeS(String.valueOf(((Integer) price).intValue()));
+		}
+	}
 
- public class S_NPCTalkActionTPUrl
-   extends ServerBasePacket
- {
-   private static final String _S__25_TalkReturnAction = "[S] S_NPCTalkActionTPUrl";
+	@override
+	public byte[] getContent() {
+		return getBytes();
+	}
 
-   public S_NPCTalkActionTPUrl(L1NpcTalkData cha, Object[] prices, int objid) {
-     buildPacket(cha, prices, objid);
-   }
-
-   private void buildPacket(L1NpcTalkData npc, Object[] prices, int objid) {
-     String htmlid = "";
-     htmlid = npc.getTeleportURL();
-     writeC(144);
-     writeD(objid);
-     writeS(htmlid);
-     writeH(1);
-     writeH(prices.length);
-
-     for (Object price : prices) {
-       writeS(String.valueOf(((Integer)price).intValue()));
-     }
-   }
-
-
-   public byte[] getContent() {
-     return getBytes();
-   }
-
-   public String getType() {
-     return "[S] S_NPCTalkActionTPUrl";
-   }
- }
+	@override
+	public String getType() {
+		return _S__25_TalkReturnAction;
+	}
+}
 
 

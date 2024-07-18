@@ -1,54 +1,57 @@
- package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
- import l1j.server.server.model.Instance.L1NpcInstance;
- import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.Opcodes;
+import l1j.server.server.model.Instance.L1NpcInstance;
+import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.model.Instance.L1PetInstance;
 
-
-
- public class S_PetCtrlMenu
-   extends ServerBasePacket
- {
-   private static final String S_PetCtrlMenu = "[S] S_PetCtrlMenu";
-
-   public S_PetCtrlMenu(L1PcInstance pc, L1NpcInstance npc, boolean open) {
-     buildPacket(pc, npc, open);
-   }
+public class S_PetCtrlMenu extends ServerBasePacket {
 
 
-   private void buildPacket(L1PcInstance pc, L1NpcInstance npc, boolean open) {
-     writeC(43);
-     writeC(12);
 
-     if (open) {
-       writeH(pc.getPetList().size() * 3);
-       writeD(0);
-       writeD(npc.getId());
-       writeH(npc.getMapId());
-       writeH(0);
-       writeH(npc.getX());
-       writeH(npc.getY());
-       if (npc instanceof l1j.server.server.model.Instance.L1PetInstance) {
-         writeC(1);
-       } else {
-         writeC(0);
-       }
-       writeS(npc.getNameId());
-     } else {
-       writeH(pc.getPetList().size() * 3 - 3);
-       writeD(1);
-       writeD(npc.getId());
-     }
-   }
+    private static final String S_PetCtrlMenu = "[S] S_PetCtrlMenu";
+
+    /** 增加ui6相關寵物隊伍和控制頻道 **/
+    public S_PetCtrlMenu(L1PcInstance pc, L1NpcInstance npc, boolean open) {
+        buildPacket(pc, npc, open);
+    }
 
 
-   public byte[] getContent() {
-     return getBytes();
-   }
+    private void buildPacket(L1PcInstance pc, L1NpcInstance npc, boolean open) {
 
+    	writeC(Opcodes.S_VOICE_CHAT);
+        writeC(0x0c);
+        
+        if (open) {
+        	writeH(pc.getPetList().size() * 3);
+        	writeD(0x00000000);
+        	writeD(npc.getId());
+        	writeH(npc.getMapId());
+        	writeH(0x0000);
+        	writeH(npc.getX());
+        	writeH(npc.getY());
+        	if(npc instanceof L1PetInstance){
+        		writeC(0x01);
+        	} else {
+        		writeC(0x00);
+        	}
+        	writeS(npc.getNameId());
+        } else {
+        	writeH(pc.getPetList().size() * 3 - 3);
+        	writeD(0x00000001);
+        	writeD(npc.getId());
+        }
+    }
 
-   public String getType() {
-     return "[S] S_PetCtrlMenu";
-   }
- }
+    @Override
+    public byte[] getContent() {
+    	return getBytes();
+    }
+
+    @Override
+    public String getType() {
+        return S_PetCtrlMenu;
+    }
+}
 
 

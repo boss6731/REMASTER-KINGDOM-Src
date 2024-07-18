@@ -1,55 +1,56 @@
- package l1j.server.server.serverpackets;
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+package l1j.server.server.serverpackets;
 
- import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.model.Instance.L1PcInstance;
 
+public class S_OpcodeTest extends ServerBasePacket {
+	private static final String S_OpcodeTest = "[C]  S_OpcodeTest";
+	private final L1PcInstance _char;
+	private final int _opcode;
+	private final int _type;
 
+	public S_OpcodeTest(L1PcInstance character, int oCODE, int type) {
+		_char = character;
+		_opcode = oCODE;
+		_type = type;
 
+		writeC(_opcode);
 
+		if (_type == 0) {
+			writeD(_char.getId());
+		} else {
+			writeD(1);
 
+		}
 
+		// writeC(1);
+	}
 
-
-
-
-
-
-
-
-
-
-
- public class S_OpcodeTest
-   extends ServerBasePacket
- {
-   private static final String S_OpcodeTest = "[C]  S_OpcodeTest";
-   private final L1PcInstance _char;
-   private final int _opcode;
-   private final int _type;
-
-   public S_OpcodeTest(L1PcInstance character, int oCODE, int type) {
-     this._char = character;
-     this._opcode = oCODE;
-     this._type = type;
-
-     writeC(this._opcode);
-
-     if (this._type == 0) {
-       writeD(this._char.getId());
-     } else {
-       writeD(1);
-     }
-   }
-
-
-
-
-   public byte[] getContent() {
-     return getBytes();
-   }
-
-   public String getType() {
-     return "[C]  S_OpcodeTest";
-   }
- }
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
+	@Override
+	public String getType() {
+		return S_OpcodeTest;
+	}
+}
 
 

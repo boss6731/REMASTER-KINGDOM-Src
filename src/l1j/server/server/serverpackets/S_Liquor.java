@@ -1,23 +1,23 @@
- package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
- public class S_Liquor
-   extends ServerBasePacket {
-   private static final String _S__19_LIQUOR = "[S] S_Liquor";
+import l1j.server.server.Opcodes;
 
-   public S_Liquor(int objecId, int type) {
-     writeC(229);
-     writeD(objecId);
-     writeC(type);
-   }
+public class S_Liquor extends ServerBasePacket {
 
+	public S_Liquor(int objecId, int type) {
+		writeC(Opcodes.S_DRUNKEN);
+		writeD(objecId);
+		writeC(type);
+	}
 
-   public byte[] getContent() {
-     return getBytes();
-   }
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
+	@Override
+	public String getType() {
+		return _S__19_LIQUOR;
+	}
 
-   public String getType() {
-     return "[S] S_Liquor";
-   }
- }
-
-
+	private static final String _S__19_LIQUOR = "[S] S_Liquor";
+}

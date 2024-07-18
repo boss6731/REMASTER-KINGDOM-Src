@@ -1,57 +1,59 @@
-     package l1j.server.server.serverpackets;
 
-     import l1j.server.server.model.Instance.L1PcInstance;
+package l1j.server.server.serverpackets;
 
-     public class S_Horun extends ServerBasePacket {
-       private static final String _S__1B_HORUN = "[S] S_Horun";
+import l1j.server.server.Opcodes;
+import l1j.server.server.model.Instance.L1PcInstance;
 
-       public S_Horun(int o, L1PcInstance pc) {
-         writeC(175);
-         writeC(8);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-         writeC(1);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-         writeC(2);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-         writeC(3);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-         writeC(4);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-         writeC(5);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-         writeC(6);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-         writeC(7);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-         writeC(0);
-       }
+public class S_Horun extends ServerBasePacket {
 
 
-       public byte[] getContent() {
-         return getBytes();
-       }
+	public S_Horun(int o, L1PcInstance pc) {
+		writeC(Opcodes.S_EXCHANGEABLE_SPELL_LIST);
+		writeC(0x08);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0x01);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0x02);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0x03);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0x04);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0x05);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0x06);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0x07);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+		writeC(0);
+	}
 
-       public String getType() {
-         return "[S] S_Horun";
-       }
-     }
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
+	@Override
+	public String getType() {
+		return _S__1B_HORUN;
+	}
 
-
+	private static final String _S__1B_HORUN = "[S] S_Horun";
+}

@@ -1,54 +1,76 @@
- package l1j.server.server.serverpackets;
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
 
- import java.util.List;
- import l1j.server.server.model.Instance.L1ItemInstance;
- import l1j.server.server.model.Instance.L1PetInstance;
+package l1j.server.server.serverpackets;
 
+import java.util.List;
 
+import l1j.server.server.Opcodes;
+import l1j.server.server.model.Instance.L1ItemInstance;
+import l1j.server.server.model.Instance.L1PetInstance;
 
- public class S_PetInventory
-   extends ServerBasePacket
- {
-   private static final String S_PET_INVENTORY = "[S] S_PetInventory";
+// Referenced classes of package l1j.server.server.serverpackets:
+// ServerBasePacket
 
-   public S_PetInventory(L1PetInstance pet) {
-     List<L1ItemInstance> itemList = pet.getInventory().getItems();
-
-     writeC(127);
-     writeD(pet.getId());
-     writeH(itemList.size());
-     writeC(11);
-     L1ItemInstance item = null;
-     for (L1ItemInstance itemObject : itemList) {
-       item = itemObject;
-       if (item != null) {
-         writeD(item.getId());
-         writeC(22);
-         writeH(item.get_gfxid());
-         writeC(item.getItem().getBless());
-         writeD(item.getCount());
-         switch (item.isEquipped() ? 1 : 0) {
-           case false:
-             writeC(item.isIdentified() ? 1 : 0);
-             break;
-           case true:
-             writeC(3);
-             break;
-         }
-         writeS(item.getViewName());
-       }
-     }
-     writeC(pet.getAC().getAc());
-   }
+public class S_PetInventory extends ServerBasePacket {
 
 
-   public byte[] getContent() {
-     return getBytes();
-   }
+	private static final String S_PET_INVENTORY = "[S] S_PetInventory";
+	
+	public S_PetInventory(L1PetInstance pet) {
+		List<L1ItemInstance> itemList = pet.getInventory().getItems();
 
-   public String getType() {
-     return "[S] S_PetInventory";
-   }
- }
+		writeC(Opcodes.S_RETRIEVE_LIST);
+		writeD(pet.getId());
+		writeH(itemList.size());
+		writeC(0x0b);
+		L1ItemInstance item = null;
+		for (Object itemObject : itemList) {
+			item = (L1ItemInstance) itemObject;
+			if (item != null) {
+				writeD(item.getId());
+				writeC(0x16);
+				writeH(item.get_gfxid());
+				writeC(item.getItem().getBless());
+				writeD(item.getCount());
+				switch (item.isEquipped() ? 1 : 0) {
+				case 0:
+					writeC(item.isIdentified() ? 1 : 0);
+					break;
+				case 1:
+					writeC(3);
+					break;
+				}
+				writeS(item.getViewName());
+			}
+		}
+		writeC(pet.getAC().getAc());
+	}
+
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
+	@Override
+	public String getType() {
+		return S_PET_INVENTORY;
+	}
+}
 
 

@@ -1,38 +1,38 @@
- package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
- import l1j.server.server.model.Instance.L1MonsterInstance;
+import l1j.server.server.Opcodes;
+import l1j.server.server.model.Instance.L1MonsterInstance;
 
+/**
+ * 20221002 改變
+ * @author Shaman
+ *
+ */
+public class S_MoveNpcPacket extends ServerBasePacket {
+	private static final String _S__1F_S_MOVENPCPACKET = "[S] S_MoveNpcPacket";
 
+	public S_MoveNpcPacket(L1MonsterInstance npc, int x, int y, int heading) {
+		// npc.set_moving(true);
 
+		writeC(Opcodes.S_MOVE_OBJECT);
+		writeD(npc.getId());
+		writeH(x);
+		writeH(y);
+		writeC(heading);
+/*		writeC(0x81);
+		writeD(0x00000000);*/
+		writeH(0);
+		// npc.set_moving(false);
+	}
 
-
-
- public class S_MoveNpcPacket
-   extends ServerBasePacket
- {
-   private static final String _S__1F_S_MOVENPCPACKET = "[S] S_MoveNpcPacket";
-
-   public S_MoveNpcPacket(L1MonsterInstance npc, int x, int y, int heading) {
-     writeC(211);
-     writeD(npc.getId());
-     writeH(x);
-     writeH(y);
-     writeC(heading);
-
-
-     writeH(0);
-   }
-
-
-
-
-   public byte[] getContent() {
-     return getBytes();
-   }
-
-   public String getType() {
-     return "[S] S_MoveNpcPacket";
-   }
- }
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
+	@Override
+	public String getType() {
+		return _S__1F_S_MOVENPCPACKET;
+	}
+}
 
 
