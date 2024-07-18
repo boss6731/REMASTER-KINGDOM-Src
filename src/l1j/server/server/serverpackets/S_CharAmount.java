@@ -1,23 +1,23 @@
-     package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
+import l1j.server.server.Opcodes;
 
-     public class S_CharAmount
-       extends ServerBasePacket
-     {
-       public S_CharAmount(int value, int i) {
-         buildPacket(value, i);
-       }
+public class S_CharAmount extends ServerBasePacket {
 
-       private void buildPacket(int value, int slot) {
-         writeC(190);
-         writeC(value);
-         writeC(slot);
-       }
+	public S_CharAmount(int value, int i) {
+		buildPacket(value, i);
+	}
 
+	private void buildPacket(int value, int slot) {
+		writeC(Opcodes.S_NUM_CHARACTER);
+		writeC(value);
+		writeC(slot);
+	}
 
-       public byte[] getContent() {
-         return getBytes();
-       }
-     }
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
+}
 
 

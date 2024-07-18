@@ -1,26 +1,48 @@
-         package l1j.server.server.serverpackets;
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+package l1j.server.server.serverpackets;
 
-         import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.Opcodes;
+import l1j.server.server.model.Instance.L1PcInstance;
 
+public class S_ActiveSpells extends ServerBasePacket {
 
+	public S_ActiveSpells(L1PcInstance pc) {
+		buildPacket(pc);
+	}
 
-         public class S_ActiveSpells
-           extends ServerBasePacket
-         {
-           public S_ActiveSpells(L1PcInstance pc) {
-             buildPacket(pc);
-           }
+	private void buildPacket(L1PcInstance pc) {
+		writeC(Opcodes.S_EVENT);
+		writeC(61);
+		writeC(0);
+		writeD(0);
+		// writeC(0x50);
+		// writeC(0x40);
+		// writeC(0x30);
+		// writeC(0x25);
+		// writeC(0x55);
+	}
 
-           private void buildPacket(L1PcInstance pc) {
-             writeC(108);
-             writeC(61);
-             writeC(0);
-             writeD(0);
-           }
-
-           public byte[] getContent() {
-             return getBytes();
-           }
-         }
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
+}
 
 

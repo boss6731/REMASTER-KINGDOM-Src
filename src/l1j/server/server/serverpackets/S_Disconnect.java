@@ -1,26 +1,27 @@
-     package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
-     public class S_Disconnect
-       extends ServerBasePacket {
-       private static S_Disconnect _disconnect;
+import l1j.server.server.Opcodes;
 
-       public static S_Disconnect get() {
-         if (_disconnect == null)
-           _disconnect = new S_Disconnect();
-         return _disconnect;
-       }
+public class S_Disconnect extends ServerBasePacket {
+	private static S_Disconnect _disconnect;
 
-       public S_Disconnect() {
-         int content = 500;
-         writeC(245);
-         writeH(content);
-         writeD(0);
-       }
+	public static S_Disconnect get(){
+		if(_disconnect == null)
+			_disconnect = new S_Disconnect();
+		return _disconnect;
+	}
+	
+	public S_Disconnect() {
+		int content = 500;
+		writeC(Opcodes.S_KICK);
+		writeH(content);
+		writeD(0x00000000);
+	}
 
-
-       public byte[] getContent() {
-         return getBytes();
-       }
-     }
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
+}
 
 

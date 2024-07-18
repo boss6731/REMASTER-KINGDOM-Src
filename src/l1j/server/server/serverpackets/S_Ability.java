@@ -1,36 +1,34 @@
-         package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
+import l1j.server.server.Opcodes;
 
-         public class S_Ability
-           extends ServerBasePacket
-         {
-           private static final String S_ABILITY = "[S] S_Ability";
+public class S_Ability extends ServerBasePacket {
 
-           public S_Ability(int type, boolean equipped) {
-             buildPacket(type, equipped);
-           }
+	private static final String S_ABILITY = "[S] S_Ability";
 
-           private void buildPacket(int type, boolean equipped) {
-             writeC(122);
-             writeC(type);
-             if (equipped) {
-               writeC(1);
-             } else {
-               writeC(0);
-             }
-             writeC(2);
-             writeH(0);
-           }
+	public S_Ability(int type, boolean equipped) {
+		buildPacket(type, equipped);
+	}
 
+	private void buildPacket(int type, boolean equipped) {
+		writeC(Opcodes.S_CHANGE_ABILITY);
+		writeC(type); // 1:ROTC 5:ROSC
+		if (equipped) {
+			writeC(0x01);
+		} else {
+			writeC(0x00);
+		}
+		writeC(0x02);
+		writeH(0x0000);
+	}
 
-           public byte[] getContent() {
-             return getBytes();
-           }
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
 
-
-           public String getType() {
-             return "[S] S_Ability";
-           }
-         }
-
-
+	@Override
+	public String getType() {
+		return S_ABILITY;
+	}
+}

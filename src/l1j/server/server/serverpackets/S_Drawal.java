@@ -1,23 +1,23 @@
-     package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
-     public class S_Drawal
-       extends ServerBasePacket {
-       private static final String _S__37_DRAWAL = "[S] S_Drawal";
+import l1j.server.server.Opcodes;
 
-       public S_Drawal(int objectId, int count) {
-         writeC(12);
-         writeD(objectId);
-         writeD(count);
-       }
+public class S_Drawal extends ServerBasePacket {
 
+	public S_Drawal(int objectId, int count) {
+		writeC(Opcodes.S_WITHDRAW);
+		writeD(objectId);
+		writeD(count);
+	}
 
-       public byte[] getContent() {
-         return getBytes();
-       }
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
+	@Override
+	public String getType() {
+		return _S__37_DRAWAL;
+	}
 
-       public String getType() {
-         return "[S] S_Drawal";
-       }
-     }
-
-
+	private static final String _S__37_DRAWAL = "[S] S_Drawal";
+}

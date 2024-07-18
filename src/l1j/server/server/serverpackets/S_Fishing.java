@@ -1,45 +1,39 @@
-     package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
+import l1j.server.server.Opcodes;
 
-     public class S_Fishing
-       extends ServerBasePacket
-     {
-       private static final String S_FISHING = "[S] S_Fishing";
+public class S_Fishing extends ServerBasePacket {
+	private final int FishUI = 63;
 
-       public S_Fishing() {
-         buildPacket();
-       }
+	private final int CAUI = 76;
 
-       public S_Fishing(int objectId, int motionNum, int x, int y) {
-         buildPacket(objectId, motionNum, x, y);
-       }
+	public S_Fishing(int t) {
+		writeC(Opcodes.S_EXTENDED_PROTOBUF);
+		writeH(FishUI);
+		writeH(264);
+		writeC(16);
+		writeBit(t);
+		writeBit(0x18);
+		writeBit(0x02);
+		writeH(0);
+	}
 
-       private void buildPacket() {
-         writeC(226);
-         writeC(55);
-         writeD(1979721762);
-         writeH(35523);
-       }
+	public S_Fishing(int type, int test, int time, String CName, boolean switch) {
+		writeC(Opcodes.S_EXTENDED_PROTOBUF);
+		writeH(CAUI);
+		writeH(264);
+		writeC(16);
+		if (switch) {
+			writeH(test);
+			writeH(time);
+			writeS(CName);
+		} else {
+			writeC(0);
+		}
+		writeH(0);
+	}
 
-       private void buildPacket(int objectId, int motionNum, int x, int y) {
-         writeC(226);
-         writeD(objectId);
-         writeC(motionNum);
-         writeH(x);
-         writeH(y);
-         writeD(0);
-         writeH(0);
-       }
-
-
-       public byte[] getContent() {
-         return getBytes();
-       }
-
-
-       public String getType() {
-         return "[S] S_Fishing";
-       }
-     }
-
-
+	public byte[] getContent() {
+		return getBytes();
+	}
+}

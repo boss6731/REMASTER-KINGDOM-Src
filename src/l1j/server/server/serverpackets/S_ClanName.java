@@ -1,64 +1,65 @@
-     package l1j.server.server.serverpackets;
+package l1j.server.server.serverpackets;
 
-     import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.Opcodes;
+import l1j.server.server.model.Instance.L1PcInstance;
 
-     public class S_ClanName
-       extends ServerBasePacket {
-       private static final String S_ClanName = "[S] S_ClanName";
+public class S_ClanName extends ServerBasePacket {
+	private static final String S_ClanName = "[S] S_ClanName";
 
-       public S_ClanName(L1PcInstance pc, int emblemId, int rank) {
-         writeC(110);
-         writeD(pc.getId());
-         writeS((rank > 0) ? pc.getClanname() : "");
-         writeC(0);
-         writeD(emblemId);
-         writeC((rank > 0) ? rank : 0);
-         writeH(0);
-       }
+	public S_ClanName(L1PcInstance pc, int emblemId, int rank) {
+		writeC(Opcodes.S_PLEDGE);
+		writeD(pc.getId());
+		writeS(rank > 0 ? pc.getClanname() : "");
+		writeC(0);
+		writeD(emblemId);		
+		writeC(rank > 0 ? rank : 0x00);
+		writeH(0x00);
+	}
 
-       public S_ClanName(L1PcInstance pc) {
-         writeC(110);
-         writeD(pc.getId());
-         writeD(0);
-       }
+	public S_ClanName(L1PcInstance pc){
+		writeC(Opcodes.S_PLEDGE);
+		writeD(pc.getId());
+		writeD(0x00);
+	}
+	
+	public S_ClanName(L1PcInstance pc, int a, int b, int c){
+		writeC(Opcodes.S_PLEDGE);
+		writeD(pc.getId());
+		writeC(0xba);
+		writeC(0xce);
+		writeC(0xb6);
+		writeC(0xf6);
+		writeC(0xc5);
+		writeC(0xab);
+		writeC(0xc5);
+		writeC(0xb8);
+		writeC(0xc0);
+		writeC(0xcc);
+		writeC(0xb0);
+		writeC(0xc5);
+		
+		writeC(0x00);
+		writeC(0x00);
+		
+		writeC(0xdd);
+		writeC(0x03);
+		writeC(0x00);
+		writeC(0x64);
+		writeC(0x07);
+		writeC(0x07);
+		writeC(0x00);
+	}
+	
+	@Override
+	public byte[] getContent() {
+		return getBytes();
+	}
 
-       public S_ClanName(L1PcInstance pc, int a, int b, int c) {
-         writeC(110);
-         writeD(pc.getId());
-         writeC(186);
-         writeC(206);
-         writeC(182);
-         writeC(246);
-         writeC(197);
-         writeC(171);
-         writeC(197);
-         writeC(184);
-         writeC(192);
-         writeC(204);
-         writeC(176);
-         writeC(197);
+	@Override
+	public String getType() {
+		return S_ClanName;
+	}
+}
 
-         writeC(0);
-         writeC(0);
-
-         writeC(221);
-         writeC(3);
-         writeC(0);
-         writeC(100);
-         writeC(7);
-         writeC(7);
-         writeC(0);
-       }
-
-
-       public byte[] getContent() {
-         return getBytes();
-       }
-
-
-       public String getType() {
-         return "[S] S_ClanName";
-       }
-     }
 
 
