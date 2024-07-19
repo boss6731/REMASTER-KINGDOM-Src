@@ -7,97 +7,118 @@ import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.Instance.L1PcInstance;
 
 public class MJBeginnerRevealView implements MJBeginnerView {
+
+	// 私有成員變量，用於存儲玩家實例和任務 ID
 	private L1PcInstance pc;
 	private int questId;
 
+	// 構造函數，初始化私有成員變量
 	MJBeginnerRevealView(L1PcInstance pc, int questId) {
 		this.pc = pc;
 		this.questId = questId;
 	}
 
+	// 公共方法，用於獲取玩家實例
 	public L1PcInstance pc() {
 		return pc;
 	}
 
+	// 公共方法，用於獲取任務 ID
 	public int questId() {
 		return questId;
 	}
 
-	private void viewInternal(eResultCode resultCode) {
+	// 私有方法，用於內部處理視圖
+	private void viewInternal(SC_QUEST_REVEAL_ACK.eResultCode resultCode) {
 		GeneralThreadPool.getInstance().schedule(new Runnable() {
-			@Override
+			@override
 			public void run() {
 				SC_QUEST_REVEAL_ACK ack = SC_QUEST_REVEAL_ACK.newInstance();
-				ack.set_id(questId);
+				ack.set_id(questId());
 				ack.set_result(resultCode);
-				// 新任務註釋
+				// 新的任務註釋
 				pc().sendPackets(ack, MJEProtoMessages.SC_QUEST_REVEAL_ACK, false);
 			}
 		}, 10L);
 	}
 
+	// 公共方法，表示成功時的處理邏輯
 	public void onSuccess() {
-		viewInternal(eResultCode.SUCCESS);
+		viewInternal(SC_QUEST_REVEAL_ACK.eResultCode.SUCCESS);
 	}
 
+	// 公共方法，表示失敗時的處理邏輯
 	public void onFail() {
-		viewInternal(eResultCode.FAIL);
+		viewInternal(SC_QUEST_REVEAL_ACK.eResultCode.FAIL);
 	}
 
+	// 公共方法，表示任務已經揭示時的處理邏輯
 	public void onAlreadyRevealed() {
-		viewInternal(eResultCode.FAIL_ALREADY_REVEALED);
+		viewInternal(SC_QUEST_REVEAL_ACK.eResultCode.FAIL_ALREADY_REVEALED);
 	}
 
+	// 公共方法，表示任務已經開始時的處理邏輯
 	public void onAlreadyStarted() {
-		viewInternal(eResultCode.FAIL_ALREADY_STARTED);
+		viewInternal(SC_QUEST_REVEAL_ACK.eResultCode.FAIL_ALREADY_STARTED);
 	}
 
+	// 公共方法，表示任務已經完成時的處理邏輯
 	public void onAlreadyFinished() {
-		viewInternal(eResultCode.FAIL_ALREADY_FINISHED);
+		viewInternal(SC_QUEST_REVEAL_ACK.eResultCode.FAIL_ALREADY_FINISHED);
 	}
 
+	// 公共方法，表示任務已過期時的處理邏輯
 	public void onObsolete() {
-		viewInternal(eResultCode.FAIL_OBSOLETE);
+		viewInternal(SC_QUEST_REVEAL_ACK.eResultCode.FAIL_OBSOLETE);
 	}
 
+	// 靜態內部類，繼承自 MJBeginnerRevealView
 	static class MJBeginnerRevealDevelopView extends MJBeginnerRevealView {
+
+		// 構造函數，調用父類的構造函數
 		MJBeginnerRevealDevelopView(L1PcInstance pc, int questId) {
 			super(pc, questId);
 		}
 
-		@Override
+		// 覆寫 onSuccess 方法，添加日誌記錄並調用父類方法
+		@override
 		public void onSuccess() {
-			System.out.println(String.format("MJBeginnerRevealView -> onSuccess. %d", questId()));
+			System.out.println(String.format("新手揭示視圖 -> 任務成功。%d", questId()));
 			super.onSuccess();
 		}
 
-		@Override
+		// 覆寫 onFail 方法，添加日誌記錄並調用父類方法
+		@override
 		public void onFail() {
-			System.out.println(String.format("MJBeginnerRevealView -> onFail. %d", questId()));
+			System.out.println(String.format("新手揭示視圖 -> 任務失敗。%d", questId()));
 			super.onFail();
 		}
 
-		@Override
+		// 覆寫 onAlreadyRevealed 方法，添加日誌記錄並調用父類方法
+		@override
 		public void onAlreadyRevealed() {
-			System.out.println(String.format("MJBeginnerRevealView -> onAlreadyRevealed. %d", questId()));
+			System.out.println(String.format("新手揭示視圖 -> 任務已經揭示。%d", questId()));
 			super.onAlreadyRevealed();
 		}
 
-		@Override
+		// 覆寫 onAlreadyStarted 方法，添加日誌記錄並調用父類方法
+		@override
 		public void onAlreadyStarted() {
-			System.out.println(String.format("MJBeginnerRevealView -> onAlreadyStarted. %d", questId()));
+			System.out.println(String.format("新手揭示視圖 -> 任務已經開始。%d", questId()));
 			super.onAlreadyStarted();
 		}
 
-		@Override
+		// 覆寫 onAlreadyFinished 方法，添加日誌記錄並調用父類方法
+		@override
 		public void onAlreadyFinished() {
-			System.out.println(String.format("MJBeginnerRevealView -> onAlreadyFinished. %d", questId()));
+			System.out.println(String.format("新手揭示視圖 -> 任務已經完成。%d", questId()));
 			super.onAlreadyFinished();
 		}
 
-		@Override
+		// 覆寫 onObsolete 方法，添加日誌記錄並調用父類方法
+		@override
 		public void onObsolete() {
-			System.out.println(String.format("MJBeginnerRevealView -> onObsolete. %d", questId()));
+			System.out.println(String.format("新手揭示視圖 -> 任務已過時。%d", questId()));
 			super.onObsolete();
 		}
 	}

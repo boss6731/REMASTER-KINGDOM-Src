@@ -4,82 +4,105 @@ import l1j.server.MJTemplate.MJProto.MJEProtoMessages;
 import l1j.server.MJTemplate.MJProto.MainServer_Client.SC_QUEST_TELEPORT_ACK;
 import l1j.server.server.model.Instance.L1PcInstance;
 
-public class MJBeginnerTeleportView implements MJBeginnerView{
+public class MJBeginnerTeleportView implements MJBeginnerView {
+
+	// 私有成員變量，用於存儲玩家實例和任務 ID
 	private L1PcInstance pc;
 	private int questId;
-	MJBeginnerTeleportView(L1PcInstance pc, int questId){
+
+	// 構造函數，初始化私有成員變量
+	MJBeginnerTeleportView(L1PcInstance pc, int questId) {
 		this.pc = pc;
 		this.questId = questId;
 	}
-	
-	public L1PcInstance pc(){
+
+	// 公共方法，用於獲取玩家實例
+	public L1PcInstance pc() {
 		return pc;
 	}
-	
-	public int questId(){
+
+	// 公共方法，用於獲取任務 ID
+	public int questId() {
 		return questId;
 	}
-	
-	private void viewInternal(SC_QUEST_TELEPORT_ACK.eResultCode resultCode){
+
+	// 私有方法，用於內部處理視圖
+	private void viewInternal(SC_QUEST_TELEPORT_ACK.eResultCode resultCode) {
 		SC_QUEST_TELEPORT_ACK ack = SC_QUEST_TELEPORT_ACK.newInstance();
 		ack.set_id(questId());
 		ack.set_result(resultCode);
 		pc().sendPackets(ack, MJEProtoMessages.SC_QUEST_TELEPORT_ACK);
 	}
-	
-	public void onSuccess(){
+
+	// 公共方法，表示成功時的處理邏輯
+	public void onSuccess() {
 		viewInternal(SC_QUEST_TELEPORT_ACK.eResultCode.SUCCESS);
 	}
-	
-	public void onFail(){
+
+	// 公共方法，表示失敗時的處理邏輯
+	public void onFail() {
 		viewInternal(SC_QUEST_TELEPORT_ACK.eResultCode.FAIL);
 	}
-	
-	public void onNotEnoughAdena(){
-		viewInternal(SC_QUEST_TELEPORT_ACK.eResultCode.FAIL_NOT_ENOUGH_ADENA);
+
+	// 公共方法，表示任務已經開始時的處理邏輯
+	public void onAlreadyStarted() {
+		viewInternal(SC_QUEST_TELEPORT_ACK.eResultCode.FAIL_ALREADY_STARTED);
 	}
-	
-	public void onWrongLocation(){
-		viewInternal(SC_QUEST_TELEPORT_ACK.eResultCode.FAIL_WRONG_LOCATION);
+
+	// 公共方法，表示任務已經完成時的處理邏輯
+	public void onAlreadyFinished() {
+		viewInternal(SC_QUEST_TELEPORT_ACK.eResultCode.FAIL_ALREADY_FINISHED);
 	}
-	
-	public void onCantTeleportNow(){
-		viewInternal(SC_QUEST_TELEPORT_ACK.eResultCode.FAIL_CANT_TELEPORT_NOW);
+
+	// 公共方法，表示任務已過期時的處理邏輯
+	public void onObsolete() {
+		viewInternal(SC_QUEST_TELEPORT_ACK.eResultCode.FAIL_OBSOLETE);
 	}
-	
-	static class MJBeginnerTeleportDevelopView extends MJBeginnerTeleportView{
+
+	// 靜態內部類，繼承自 MJBeginnerTeleportView
+	static class MJBeginnerTeleportDevelopView extends MJBeginnerTeleportView {
+
+		// 構造函數，調用父類的構造函數
 		MJBeginnerTeleportDevelopView(L1PcInstance pc, int questId) {
 			super(pc, questId);
-		}		
-		
-		@Override
-		public void onSuccess(){
-			System.out.println(String.format("MJBeginnerTeleportView -> onSuccess. %d", questId()));
+		}
+
+		// 覆寫 onSuccess 方法，添加日誌記錄並調用父類方法
+		@override
+		public void onSuccess() {
+			System.out.println(String.format("新手傳送視圖 -> 任務成功。%d", questId()));
 			super.onSuccess();
 		}
-		
-		@Override
-		public void onFail(){
-			System.out.println(String.format("MJBeginnerTeleportView -> onFail. %d", questId()));
+
+		// 覆寫 onFail 方法，添加日誌記錄並調用父類方法
+		@override
+		public void onFail() {
+			System.out.println(String.format("新手傳送視圖 -> 任務失敗。%d", questId()));
 			super.onFail();
 		}
-		
-		@Override
-		public void onNotEnoughAdena(){
-			System.out.println(String.format("MJBeginnerTeleportView -> onFailNotEnoughAdena. %d", questId()));
-			super.onNotEnoughAdena();
+
+		// 覆寫 onAlreadyStarted 方法，添加日誌記錄並調用父類方法
+		@override
+		public void onAlreadyStarted() {
+			System.out.println(String.format("新手傳送視圖 -> 任務已經開始。%d", questId()));
+			super.onAlreadyStarted();
 		}
-		
-		@Override
-		public void onWrongLocation(){
-			System.out.println(String.format("MJBeginnerTeleportView -> onWrongLocation. %d", questId()));
-			super.onWrongLocation();
+
+		// 覆寫 onAlreadyFinished 方法，添加日誌記錄並調用父類方法
+		@override
+
+		public void onAlreadyFinished() {
+			System.out.println(String.format("新手傳送視圖 -> 任務已經完成。%d", questId()));
+			super.onAlreadyFinished();
 		}
-		
-		@Override
-		public void onCantTeleportNow(){
-			System.out.println(String.format("MJBeginnerTeleportView -> onCantTeleportNow. %d", questId()));
-			super.onCantTeleportNow();
+
+		// 覆寫 onObsolete 方法，添加日誌記錄並調用父類方法
+		@override
+		public void onObsolete() {
+			System.out.println(String.format("新手傳送視圖 -> 任務已過時。%d", questId()));
+			super.onObsolete();
 		}
+
+		// 添加 closing 大括號
 	}
 }

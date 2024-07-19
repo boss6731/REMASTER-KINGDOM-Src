@@ -1,103 +1,128 @@
 package l1j.server.Beginner.Model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+/*### 改進建議
 
-import l1j.server.MJTemplate.MJRnd;
-import l1j.server.MJTemplate.matcher.Matcher;
+	*	1. **方法命名和訪問修飾符**：確保所有方法都使用 `public` 訪問修飾符，並且方法名稱符合 Java 的命名慣例。
+	*	2. **邏輯清晰度**：確保邏輯清晰，特別是在方法 `selectProbability` 和 `collectItemsCount` 中，這些方法的邏輯應該明確且易於理解。
+	*	3. **代碼格式**：保持代碼格式一致，這樣代碼更具可讀性。
 
-class MJBeginnerCollectData{
+		### 完整的繁體中文版本*/
+
+		import java.util.ArrayList;
+		import java.util.HashMap;
+
+		// 初學者收集數據類
+public class MJBeginnerCollectData {
+	// 來自 NPC 對話的收集數據
 	private HashMap<Integer, MJBeginnerCollectDataFromNpcTalk> collectsFromNpcTalks;
+	// 來自怪物的收集數據
 	private HashMap<Integer, MJBeginnerCollectDataFromMonsters> collectsFromMonsters;
-	MJBeginnerCollectData(HashMap<Integer, MJBeginnerCollectDataFromNpcTalk> collectsFromNpcTalks, HashMap<Integer, MJBeginnerCollectDataFromMonsters> collectsFromMonsters){
+
+	// 構造函數
+	public MJBeginnerCollectData(HashMap<Integer, MJBeginnerCollectDataFromNpcTalk> collectsFromNpcTalks, HashMap<Integer, MJBeginnerCollectDataFromMonsters> collectsFromMonsters) {
 		this.collectsFromNpcTalks = collectsFromNpcTalks;
 		this.collectsFromMonsters = collectsFromMonsters;
 	}
-	
-	boolean hasCollectsFromNpcTalks(){
+
+	// 檢查是否有來自 NPC 對話的收集數據
+	public boolean hasCollectsFromNpcTalks() {
 		return collectsFromNpcTalks != null;
 	}
-	
-	HashMap<Integer, MJBeginnerCollectDataFromNpcTalk> collectsFromNpcTalks(){
+
+	// 獲取來自 NPC 對話的收集數據
+	public HashMap<Integer, MJBeginnerCollectDataFromNpcTalk> getCollectsFromNpcTalks() {
 		return collectsFromNpcTalks;
 	}
-	
-	boolean hasCollectsFromMonsters(){
+
+	// 檢查是否有來自怪物的收集數據
+	public boolean hasCollectsFromMonsters() {
 		return collectsFromMonsters != null;
 	}
-	
-	HashMap<Integer, MJBeginnerCollectDataFromMonsters> collectsFromMonsters(){
+
+	// 獲取來自怪物的收集數據
+	public HashMap<Integer, MJBeginnerCollectDataFromMonsters> getCollectsFromMonsters() {
 		return collectsFromMonsters;
 	}
-	
-	
-	static class MJBeginnerCollectDataFromNpcTalk implements Matcher<Integer>{
+
+	// 靜態內部類
+	static class MJBeginnerCollectDataFromNpcTalk implements Matcher<Integer> {
 		private int itemAssetId;
 		private int talkingNpc;
 		private int suppliesCount;
-		
-		int itemAssetId(){
+
+		// 獲取物品資產ID
+		public int getItemAssetId() {
 			return itemAssetId;
 		}
-		
-		int talkingNpc(){
+
+		// 獲取對話的NPC
+		public int getTalkingNpc() {
 			return talkingNpc;
 		}
-		
-		int suppliesCount(){
+
+		// 獲取供應數量
+		public int getSuppliesCount() {
 			return suppliesCount;
 		}
-		
-		@Override
+
+		@override
 		public boolean matches(Integer i) {
-			return i.intValue() == talkingNpc();
+			return i.intValue() == getTalkingNpc();
 		}
 	}
-	
-	static class MJBeginnerCollectDataFromMonsters implements Matcher<Integer>{
+
+	// 靜態內部類
+	static class MJBeginnerCollectDataFromMonsters implements Matcher<Integer> {
 		private int itemAssetId;
 		private ArrayList<Integer> suppliersNpc;
 		private double probability;
 		private int suppliesMinimum;
 		private int suppliesMaximum;
-		
-		int itemAssetId(){
+
+		// 獲取物品資產ID
+		public int getItemAssetId() {
 			return itemAssetId;
 		}
-		
-		ArrayList<Integer> suppliersNpc(){
+
+		// 獲取供應的NPC列表
+		public ArrayList<Integer> getSuppliersNpc() {
 			return suppliersNpc;
 		}
-		
-		double probability(){
+
+		// 獲取概率
+		public double getProbability() {
 			return probability;
 		}
-		
-		int suppliesMinimum(){
+
+		// 獲取最小供應數量
+		public int getSuppliesMinimum() {
 			return suppliesMinimum;
 		}
-		
-		int suppliesMaximum(){
+
+		// 獲取最大供應數量
+		public int getSuppliesMaximum() {
 			return suppliesMaximum;
 		}
 
-		@Override
+		@override
 		public boolean matches(Integer i) {
-			for(Integer supplierNpcId : suppliersNpc()){
-				if(i.intValue() == supplierNpcId.intValue()){
+			for (Integer supplierNpcId : getSuppliersNpc()) {
+				if (i.intValue() == supplierNpcId.intValue()) {
 					return true;
 				}
 			}
 			return false;
 		}
-		
-		boolean selectProbability(){
-			return probability() >= 1D || MJRnd.isWinning(1000000, (int)(probability() * 1000000));
+
+		// 檢查是否贏得概率
+		public boolean selectProbability() {
+			return getProbability() >= 1D || MJRnd.isWinning(1000000, (int)(getProbability() * 1000000));
 		}
-		
-		int collectItemsCount(){
-			return suppliesMinimum() == suppliesMaximum() ? 
-					suppliesMinimum() : MJRnd.next(suppliesMinimum(), suppliesMaximum());
+
+		// 獲取收集物品的數量
+		public int collectItemsCount() {
+			return getSuppliesMinimum() == getSuppliesMaximum() ?
+					getSuppliesMinimum() : MJRnd.next(getSuppliesMinimum(), getSuppliesMaximum());
 		}
 	}
 }
