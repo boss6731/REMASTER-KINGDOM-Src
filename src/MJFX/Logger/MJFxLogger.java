@@ -1,64 +1,71 @@
- package MJFX.Logger;
+package MJFX.Logger;
 
- import java.util.Calendar;
- import java.util.TimeZone;
- import javafx.application.Platform;
- import javafx.scene.control.TextArea;
+import javafx.application.Platform;
+import javafx.scene.control.TextArea;
+import java.util.Calendar;
+import java.util.TimeZone;
 
- public enum MJFxLogger
- {
-   CHAT_WORLD(0),
-   CHAT_NORMAL(1),
-   CHAT_PLEDGE(2),
-   CHAT_PARTY(3),
-   CHAT_WHISPER(4),
-   CHAT_TRADE(5),
-   ACCOUNT_CREATE(6),
-   LOGIN_CHARACTER(7),
-   GM_COMMAND(8),
-   TRADE(9),
-   WAREHOUSE(10),
-   BOSS_TIMER(11),
-   ENCHANT_MONITOR(12),
-   ITEM(13),
-   MINIGAME(14);
+public enum MJFxLogger {
+	CHAT_WORLD(0),
+	CHAT_NORMAL(1),
+	CHAT_PLEDGE(2),
+	CHAT_PARTY(3),
+	CHAT_WHISPER(4),
+	CHAT_TRADE(5),
+	ACCOUNT_CREATE(6),
+	LOGIN_CHARACTER(7),
+	GM_COMMAND(8),
+	TRADE(9),
+	WAREHOUSE(10),
+	BOSS_TIMER(11),
+	ENCHANT_MONITOR(12),
+	ITEM(13),
+	MINIGAME(14);
 
-   public static final int MAX_LINES = 1000;
-   private int m_val;
-   private int m_append_count;
-   private TextArea m_txt;
+	public static final int MAX_LINES = 1000; // 設定最多記錄行數
+	private int m_val; // 每個枚舉常量對應的值
+	private int m_append_count; // 追加行數計數
+	private TextArea m_txt; // 對應的TextArea
 
-   MJFxLogger(int val) {
-     this.m_val = val;
-     this.m_append_count = 0;
-   }
+	MJFxLogger(int val) {
+		this.m_val = val;
+		this.m_append_count = 0;
+	}
 
-   public int to_int() {
-     return this.m_val;
-   }
+	// 將枚舉常量轉換為整數值的方法
+	public int to_int() {
+		return this.m_val;
+	}
 
-   public void set_text_area(TextArea txt) {
-     this.m_txt = txt;
-   }
+	// 設定TextArea的方法
+	public void set_text_area(TextArea txt) {
+		this.m_txt = txt;
+	}
 
-   public void append_log(String message) {
-     Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+8"));
-     String content = String.format("[%02d:%02d:%02d]%s\r\n", new Object[] { Integer.valueOf(cal.get(11)), Integer.valueOf(cal.get(12)), Integer.valueOf(cal.get(13)), message });
-     update_log(content);
-   }
+	// 追加日誌信息的方法，並添加時間戳
+	public void append_log(String message) {
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+8"));
+		String content = String.format("[%02d:%02d:%02d] %s\r\n",
+				cal.get(Calendar.HOUR_OF_DAY),
+				cal.get(Calendar.MINUTE),
+				cal.get(Calendar.SECOND),
+				message);
+		update_log(content);
+	}
 
-   public void update_log(String message) {
-     if (this.m_txt == null) {
-       return;
-     }
-     Platform.runLater(() -> {
-           if (++this.m_append_count >= 1000) {
-             this.m_append_count = 0;
-             this.m_txt.clear();
-           }
-           this.m_txt.appendText(message);
-         });
-   }
- }
+	// 更新日誌信息的方法
+	public void update_log(String message) {
+		if (this.m_txt == null) {
+			return;
+		}
+		Platform.runLater(() -> {
+			if (++this.m_append_count >= MAX_LINES) {
+				this.m_append_count = 0;
+				this.m_txt.clear(); // 超過最大行數時清空
+			}
+			this.m_txt.appendText(message);
+		});
+	}
+}
 
 
