@@ -1,59 +1,53 @@
 package l1j.server.QueenAntSystem;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 
 import javolution.util.FastTable;
-import l1j.server.server.IdFactory;
-import l1j.server.server.datatables.NpcTable;
-import l1j.server.server.model.L1NpcDeleteTimer;
-import l1j.server.server.model.L1World;
+import l1j.server.MJTemplate.MJSqlHelper.Executors.Selector;
+import l1j.server.MJTemplate.MJSqlHelper.Handler.FullSelectorHandler;
 import l1j.server.server.model.Instance.L1NpcInstance;
-import l1j.server.server.model.map.L1WorldMap;
-import l1j.server.server.templates.L1Npc;
 
-public class QueenAntSpawnlistInfo {
-	static FastTable<L1NpcInstance> newInstance(ResultSet rs, int type) throws SQLException {
-		FastTable<L1NpcInstance> list = new FastTable<L1NpcInstance>();
-		L1Npc l1npc = null;
-		L1NpcInstance npc = null;
-		if (type == rs.getInt("spawn_type")) {
-			int npcid = rs.getInt("npc_id");
-			int locX = rs.getInt("loc_x");
-			int locY = rs.getInt("loc_y");
-			int mapid = rs.getInt("loc_map");
-			int heading = rs.getInt("heading");
-			int spawn_time = rs.getInt("spawn_time");
-			l1npc = NpcTable.getInstance().getTemplate(npcid);
-			if (l1npc != null) {
-				try {
-					npc = NpcTable.getInstance().newNpcInstance(npcid);
-					npc.setId(IdFactory.getInstance().nextId());
-					npc.setX(locX);
-					npc.setY(locY);
-					npc.setMap((short) mapid);
-					npc.setMap(L1WorldMap.getInstance().getMap((short) mapid));
-					npc.setHomeX(npc.getX());
-					npc.setHomeY(npc.getY());
-					npc.setHeading(heading);
-					npc.setLightSize(l1npc.getLightSize());
-					npc.getLight().turnOnOffLight();
-					
-					if (spawn_time > 0) {
-						L1NpcDeleteTimer timer = new L1NpcDeleteTimer(npc, spawn_time * 1000);
-						timer.begin();
-					}
-					
-					L1World.getInstance().storeObject(npc);
-					L1World.getInstance().addVisibleObject(npc);
-					list.add(npc);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else {
-				System.out.println(String.format("spawnlist_queen_ant中登記了一個不存在的npcid。npcid: %d", npcid));
-			}
+import java.sql.ResultSet;
+
+// 女王螞蟻生成列表加載器
+public class QueenAntSpawnlistLoader {
+
+	// 單例模式的實例變數
+	private static QueenAntSpawnlistLoader _instance;
+
+	// 獲取單例實例的方法
+	public static QueenAntSpawnlistLoader getInstance() {
+		// 若實例尚未創建，則創建一個新實例
+		if (_instance == null) {
+			_instance = new QueenAntSpawnlistLoader();
 		}
+		// 返回實例
+		return _instance;
+	}
+
+	// 根據類型獲取女王螞蟻的生成列表
+	public FastTable<L1NpcInstance> spawnlist(int type) {
+		// 創建一個新的 FastTable 來存放生成的 NPC 列表
+		final FastTable<L1NpcInstance> list = new FastTable<L1NpcInstance>();
+
+		// 執行 SQL 查詢以從 spawnlist_queen_ant 表中獲取數據
+		Selector.exec("select * from spawnlist_queen_ant", new FullSelectorHandler() {
+			@override
+			public void result(ResultSet rs) throws Exception {
+				// 遍歷查詢結果集
+				while (rs.next()) {
+					// 根據結果集和類型創建新的 NPC 生成信息
+					FastTable<L1NpcInstance> pInfo = QueenAntSpawnlistInfo.newInstance(rs, type);
+					// 如果生成信息為空，則跳過此次循環
+					if (pInfo == null) continue;
+					// 將生成的信息添加到列表中
+					list.addAll(pInfo);
+				}
+				
+			}
+		});
+
+		// 返回生成的 NPC 列表
 		return list;
 	}
 	
