@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="L1J" default="all" basedir=".">
+    <description>
+        This script will build the L1J server.
+
+        This program is free software; you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation; either version 2, or (at your option)
+        any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program; if not, write to the Free Software
+        Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+        02111-1307, USA.
+
+        https://www.gnu.org/copyleft/gpl.html
+
+    </description>
+
+
+    <!-- Set Property -->
+    <property name="src.dir" value="src"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="build.dir" value="build"/>
+    <property name="jarfile" value="TheDay.jar"/>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}">
+            <include name="c3p0-0.9.5.2.jar"/>
+            <include name="change-commons-java-0.2.15.jar"/>
+            <include name="HikariCP-3.2.0.jar"/>
+            <include name="slf4j-api-1.7.25.jar"/>
+            <include name="slf4j-simple-1.7.25.jar"/>
+            <include name="gson-2.8.4-sources.jar"/>
+            <include name="gson-2.8.4.jar"/>
+            <include name="evolution.jar"/>
+            <include name="json-20180813.jar"/>
+            <include name="json-simple-1.1.1.jar"/>
+            <include name="JTattoo-1.6.10.jar"/>
+            <include name="mysql-connector-java-8.0.13.jar"/>
+            <include name="netty-all-4.1.31.Final.jar"/>
+            <include name="org.eclipse.swt.win32.win32.x86_64_3.100.1.v4234e.jar"/>
+            <include name="servlet-api.jar"/>
+            <include name="xml-api.jar"/>
+            <include name="commons-net-3.7.jar"/>
+            <include name="ini4j-0.5.4.jar"/>
+        </fileset>
+    </path>
+
+
+    <!-- Set DefaultTarget -->
+    <target name="all" depends="clean,compile,jar,clean2"/>
+
+
+    <!-- clean Target -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <!-- Compile Target -->
+    <target name="compile">
+        <mkdir dir="${build.dir}"/>
+        <javac destdir="${build.dir}" optimize="on" includeantruntime="false" encoding="euc-kr" debug="yes">
+            <src path="${src.dir}"/>
+            <classpath refid="classpath"/>
+        </javac>
+        <copy todir="${build.dir}">
+            <fileset dir="${src.dir}" excludes="**/*.java"/>
+        </copy>
+    </target>
+
+    <!-- jar Target -->
+    <target name="jar">
+        <jar manifest="${src.dir}/META-INF/MANIFEST.MF" basedir="${build.dir}" jarfile="${jarfile}"/>
+    </target>
+
+    <!-- clean Target -->
+    <target name="clean2">
+        <delete dir="${build.dir}"/>
+    </target>
+
+</project>
