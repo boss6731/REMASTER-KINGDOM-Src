@@ -20,6 +20,9 @@ import javafx.scene.paint.Color;
 import com.sun.javafx.tk.FontLoader;
 import com.sun.javafx.tk.Toolkit;
 
+import java.awt.event.MouseEvent;
+import java.text.Collator;
+
 public class MJMDIPanelHelper {
 	// 成員變數
 	private BorderPane m_bpn;
@@ -63,7 +66,7 @@ public class MJMDIPanelHelper {
 		this.m_bpn.setPrefHeight(this.m_main_content.getPrefHeight() + 32.0D + 5.0D);
 		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
 		this.m_lbl_title.setLayoutX(this.m_bpn.getPrefWidth() - fontLoader.computeStringWidth(this.m_lbl_title.getText(), this.m_lbl_title.getFont()) - 8.0D);
-		
+
 		this.m_se_size_pane = create_pane(5, 5, false, "-fx-background-color:transparent");
 		this.m_bottom_pane.getChildren().add(this.m_se_size_pane);
 		this.m_se_size_pane.setOnMousePressed(event -> on_size_mouse_pressed(event));
@@ -80,7 +83,7 @@ public class MJMDIPanelHelper {
 		this.m_right_pane.setOnMouseClicked(event -> on_child_clicked(event));
 		this.m_bottom_pane.setOnMouseClicked(event -> on_child_clicked(event));
 		this.m_left_pane.setOnMouseClicked(event -> on_child_clicked(event));
-		
+
 		if (this.m_menu_item != null) {
 			this.m_menu_item.selectedProperty().addListener(new ChangeListener<Boolean>() {
 				public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -138,7 +141,8 @@ public class MJMDIPanelHelper {
 
 	// 當關閉按鈕被點擊時的處理
 	public void on_close_button_clicked(MouseEvent event) {
-		if (event.getButton() == MouseButton.PRIMARY) {
+		Collator MouseButton = null;
+		if (event.getButton() == Collator.PRIMARY) {
 			if (this.m_menu_item != null)
 				this.m_menu_item.setSelected(false);
 			this.m_bpn.setVisible(false);
