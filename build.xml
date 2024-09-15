@@ -65,7 +65,7 @@
     <!-- Compile Target -->
     <target name="compile">
         <mkdir dir="${build.dir}"/>
-        <javac destdir="${build.dir}" optimize="on" includeantruntime="false" encoding="euc-kr" debug="yes">
+        <javac destdir="${build.dir}" optimize="on" includeantruntime="false" encoding="UTF-8" debug="yes">
             <src path="${src.dir}"/>
             <classpath refid="classpath"/>
         </javac>

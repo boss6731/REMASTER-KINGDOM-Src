@@ -1,0 +1,19 @@
+#btn_do_login, #btn_do_cancel{
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+	-fx-cursor: hand;
+	-fx-border-color: white;
+	-fx-border-width: 1;
+}
+
+#btn_do_login:hover, #btn_do_cancel:hover{
+	-fx-text-fill: #ffbb55;
+    -fx-background-color: transparent;
+	-fx-cursor: hand;
+	-fx-border-color: #ffbb55;
+	-fx-border-width: 2;
+}
+
+.progress-indicator .percentage {
+    -fx-fill: white;
+}
