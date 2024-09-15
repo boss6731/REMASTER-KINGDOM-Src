@@ -44,7 +44,7 @@ public class Beginner {
 	}
 
 	public int GiveItemToActivePc(L1PcInstance pc) {
-		Selector.exec("select * from beginner where activate=全部 or activate=?", new SelectorHandler() {
+		Selector.exec("select * from beginner where activate=l or activate=?", new SelectorHandler() {
 			@Override
 			public void handle(PreparedStatement pstm) throws Exception {
 				pstm.setString(1, classid_to_db_name(pc.getClassId()));
