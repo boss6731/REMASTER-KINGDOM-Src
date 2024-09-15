@@ -44,7 +44,7 @@ public class Beginner {
 	}
 
 	public int GiveItemToActivePc(L1PcInstance pc) {
-		Selector.exec("select * from beginner where activate=l or activate=?", new SelectorHandler() {
+		Selector.exec("select * from beginner where activate=all or activate=?", new SelectorHandler() {
 			@Override
 			public void handle(PreparedStatement pstm) throws Exception {
 				pstm.setString(1, classid_to_db_name(pc.getClassId()));
@@ -70,7 +70,7 @@ public class Beginner {
 								}
 							}
 							if (createCount > 0) {
-								pc.sendPackets(new S_ServerMessage(403, // %0를 손에 넣었습니다.
+								pc.sendPackets(new S_ServerMessage(403, // 你已獲得 %0.
 										item.getLogName() + "(ID:" + itemid + ")"));
 							}
 						}
@@ -156,7 +156,7 @@ public class Beginner {
 	
 	public int GiveItem(final L1PcInstance pc) {
 		_weapont_count = 0;
-		Selector.exec("select * from beginner where activate='全部' or activate=?", new SelectorHandler() {
+		Selector.exec("select * from beginner where activate='all' or activate=?", new SelectorHandler() {
 			@Override
 			public void handle(PreparedStatement pstm) throws Exception {
 				pstm.setString(1, classid_to_db_name(pc.getClassId()));
